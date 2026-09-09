@@ -105,14 +105,14 @@ body { background: var(--crema); font-family: 'Noto Sans SC', 'Inter', sans-seri
 .mosaic { width: 100vw; height: 100vh; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; grid-template-rows: 1fr 1fr 1fr; gap: 3px; }
 .tile { position: relative; overflow: hidden; cursor: pointer; text-decoration: none; color: white; background-size: cover; background-position: center; }
 .tile .overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: clamp(0.7rem, 1.5vw, 1.3rem); background: linear-gradient(transparent, rgba(0,0,0,0.6)); color: white; z-index: 2; }
-.tile .overlay-title { font-family: 'Noto Serif SC', 'Instrument Serif', serif; font-size: clamp(0.8rem, 1.3vw, 1.1rem); line-height: 1.2; }
-.tile .overlay-sub { font-size: clamp(0.5rem, 0.7vw, 0.65rem); font-weight: 300; letter-spacing: 0.08em; opacity: 0.85; margin-top: 0.15rem; }
+.tile .overlay-title { font-family: 'Noto Serif SC', 'Instrument Serif', serif; font-size: clamp(0.95rem, 1.3vw, 1.15rem); line-height: 1.2; }
+.tile .overlay-sub { font-size: clamp(0.75rem, 0.85vw, 0.85rem); font-weight: 300; letter-spacing: 0.08em; opacity: 0.85; margin-top: 0.15rem; }
 .tile-hero { grid-row: 1 / 4; grid-column: 1 / 2; display: flex; flex-direction: column; justify-content: flex-end; }
 .tile-hero .overlay { background: linear-gradient(transparent 20%, rgba(0,0,0,0.6)); padding: clamp(1.5rem, 4vw, 3rem); }
 .tile-hero .hero-name { font-family: 'Instrument Serif', serif; font-size: clamp(2.2rem, 4.5vw, 4rem); line-height: 1.05; margin-bottom: 0.5rem; }
 .tile-hero .hero-name em { font-style: italic; }
-.tile-hero .hero-sub { font-size: clamp(0.6rem, 0.9vw, 0.75rem); font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.8); margin-bottom: 0.6rem; }
-.tile-hero .hero-bio { font-size: clamp(0.75rem, 1vw, 0.9rem); font-weight: 300; line-height: 1.65; color: rgba(255,255,255,0.85); max-width: 380px; }
+.tile-hero .hero-sub { font-size: clamp(0.8rem, 0.95vw, 0.9rem); font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.8); margin-bottom: 0.6rem; }
+.tile-hero .hero-bio { font-size: clamp(0.95rem, 1.1vw, 1.05rem); font-weight: 300; line-height: 1.65; color: rgba(255,255,255,0.85); max-width: 380px; }
 .ph-portrait { background-image: url(https://www.tlon.it/assets/images/maura-gancitano.jpg); background-size: cover; background-position: center 20%; }
 .ph-libri { background-image: url(https://www.tlon.it/assets/images/libreria-2.jpg); background-size: cover; background-position: center; }
 .ph-tlon { background-image: url(https://www.tlon.it/assets/images/libreria-1.jpg); background-size: cover; background-position: center; }
@@ -141,14 +141,14 @@ body { background: var(--crema); font-family: 'Noto Sans SC', 'Inter', sans-seri
 .activity-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.05); transform: translateY(-2px); }
 .activity-card .ac-label { font-size: 0.55rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--salvia); margin-bottom: 0.4rem; }
 .activity-card .ac-title { font-family: 'Noto Serif SC', 'Instrument Serif', serif; font-size: 1rem; margin-bottom: 0.3rem; }
-.activity-card .ac-desc { font-size: 0.72rem; color: var(--grigio); font-weight: 300; line-height: 1.5; }
+.activity-card .ac-desc { font-size: 0.94rem; color: var(--grigio); font-weight: 300; line-height: 1.5; }
 .podcast-strip { display: flex; gap: 1.2rem; overflow-x: auto; padding-bottom: 1rem; }
 .pod-card { flex-shrink: 0; display: flex; gap: 1rem; align-items: center; padding: 1rem 1.2rem; background: white; border-radius: 4px; border: 1px solid rgba(107,143,107,0.06); text-decoration: none; color: var(--nero); min-width: 280px; transition: box-shadow 0.3s, transform 0.3s; }
 .pod-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.05); transform: translateY(-2px); }
 .pod-thumb { width: 54px; height: 54px; border-radius: 8px; overflow: hidden; flex-shrink: 0; }
 .pod-thumb .img-ph { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-family: 'Instrument Serif', serif; font-size: 1rem; color: rgba(255,255,255,0.7); }
-.pod-name { font-family: 'Instrument Serif', serif; font-size: 0.9rem; margin-bottom: 0.15rem; }
-.pod-desc { font-size: 0.65rem; color: var(--grigio); font-weight: 300; line-height: 1.4; }
+.pod-name { font-family: 'Instrument Serif', serif; font-size: 0.95rem; margin-bottom: 0.15rem; }
+.pod-desc { font-size: 0.875rem; color: var(--grigio); font-weight: 300; line-height: 1.4; }
 .footer { background: var(--salvia-scuro); color: rgba(255,255,255,0.7); padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem) 1.5rem; }
 .footer-inner { max-width: 1200px; margin: 0 auto; }
 .footer-top { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); gap: 2rem; flex-wrap: wrap; }
@@ -173,7 +173,17 @@ body { background: var(--crema); font-family: 'Noto Sans SC', 'Inter', sans-seri
     .footer-top { flex-direction: column; }
     .footer-bottom { flex-direction: column; text-align: center; }
 }
-</style>
+
+        /* Su schermo stretto il testo cresce, non si rimpicciolisce */
+        @media (max-width: 550px) {
+            .activity-card .ac-desc { font-size: 1rem; line-height: 1.6; }
+            .pod-desc { font-size: 0.95rem; }
+            .tile-hero .hero-bio { font-size: 1rem; }
+            .tile-hero .hero-sub { font-size: 0.9rem; }
+            .tile .overlay-sub { font-size: 0.85rem; }
+            .tile .overlay-title { font-size: 1.05rem; }
+        }
+    </style>
 </head>
 <body>
 <nav class="nav" aria-label="&#20027;&#23548;&#33322;">

@@ -265,11 +265,11 @@ body {
 }
 .tile .overlay-title {
     font-family: 'Instrument Serif', serif;
-    font-size: clamp(0.8rem, 1.3vw, 1.1rem);
+    font-size: clamp(0.95rem, 1.3vw, 1.15rem);
     line-height: 1.2;
 }
 .tile .overlay-sub {
-    font-size: clamp(0.5rem, 0.7vw, 0.65rem);
+    font-size: clamp(0.75rem, 0.85vw, 0.85rem);
     font-weight: 300;
     letter-spacing: 0.08em;
     opacity: 0.85;
@@ -294,7 +294,7 @@ body {
 }
 .tile-hero .hero-name em { font-style: italic; }
 .tile-hero .hero-sub {
-    font-size: clamp(0.6rem, 0.9vw, 0.75rem);
+    font-size: clamp(0.8rem, 0.95vw, 0.9rem);
     font-weight: 300;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -302,7 +302,7 @@ body {
     margin-bottom: 0.6rem;
 }
 .tile-hero .hero-bio {
-    font-size: clamp(0.75rem, 1vw, 0.9rem);
+    font-size: clamp(0.95rem, 1.1vw, 1.05rem);
     font-weight: 300;
     line-height: 1.65;
     color: rgba(255,255,255,0.85);
@@ -451,7 +451,7 @@ body {
     margin-bottom: 0.3rem;
 }
 .activity-card .ac-desc {
-    font-size: 0.72rem;
+    font-size: 0.94rem;
     color: var(--grigio);
     font-weight: 300;
     line-height: 1.5;
@@ -486,10 +486,10 @@ body {
 }
 .pod-name {
     font-family: 'Instrument Serif', serif;
-    font-size: 0.9rem; margin-bottom: 0.15rem;
+    font-size: 0.95rem; margin-bottom: 0.15rem;
 }
 .pod-desc {
-    font-size: 0.65rem; color: var(--grigio);
+    font-size: 0.875rem; color: var(--grigio);
     font-weight: 300; line-height: 1.4;
 }
 .footer {
@@ -571,7 +571,17 @@ body {
     .footer-top { flex-direction: column; }
     .footer-bottom { flex-direction: column; text-align: center; }
 }
-</style>
+
+        /* Su schermo stretto il testo cresce, non si rimpicciolisce */
+        @media (max-width: 550px) {
+            .activity-card .ac-desc { font-size: 1rem; line-height: 1.6; }
+            .pod-desc { font-size: 0.95rem; }
+            .tile-hero .hero-bio { font-size: 1rem; }
+            .tile-hero .hero-sub { font-size: 0.9rem; }
+            .tile .overlay-sub { font-size: 0.85rem; }
+            .tile .overlay-title { font-size: 1.05rem; }
+        }
+    </style>
 </head>
 <body>
 <nav class="nav" aria-label="Navigazione principale">
