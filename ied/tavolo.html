@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Che cosa stiamo guardando</title>
+<meta name="description" content="Il tavolo da gioco del corso: il mazzo delle sessanta parole, binomio, stese, memory del rovescio.">
+<meta property="og:title" content="Che cosa stiamo guardando"><meta property="og:description" content="Il tavolo da gioco del corso: il mazzo delle sessanta parole, binomio, stese, memory del rovescio."><meta property="og:type" content="website">
+<meta name="robots" content="noindex">
+<style>[hidden]{display:none!important}body{margin:0}</style>
+</head>
+<body>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Familjen+Grotesk:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Un tavolo con un mazzo di sessanta carte: quarantaquattro chiare e sedici scure. Si pesca, si fanno stese, si gioca al memory del rovescio. Il corso sta in un pannello a parte. */
+:root{--tavolo:#EFE6D2;--carta:#FBF6EA;--ink:#1B1711;--scuro:#1B1711;
+  --sen:#E3A63A;--bod:#E25A3F;--des:#C8457F;--wor:#3F72C4;--tog:#3EA377;--grigio:#6E6A62;
+  color-scheme:light}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{background:var(--tavolo);background-image:radial-gradient(ellipse at 50% 30%,#F7F1E4 0%,var(--tavolo) 60%,#E2D7BE 100%);color:var(--ink);font-family:"Familjen Grotesk",system-ui,sans-serif;overflow:hidden}
+button{font-family:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.mono{font:500 10.5px/1 "DM Mono",monospace;letter-spacing:.14em;text-transform:uppercase}
+h1,h2,h3{font-family:Marcellus,serif;font-weight:400;line-height:1.04;text-wrap:balance}
+
+header{position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);left:16px;right:16px;display:flex;justify-content:space-between;align-items:center;gap:10px;z-index:20;flex-wrap:wrap}
+header .sx{display:flex;flex-direction:column;gap:4px}
+header .sx h1{font-size:clamp(20px,2.4vw,30px)}
+header .sx .mono{opacity:.7}
+.chip{padding:8px 12px;border-radius:99px;background:rgba(27,23,17,.08);border:1px solid rgba(27,23,17,.1);transition:background .25s,color .25s}
+.chip:hover{background:rgba(27,23,17,.16)}
+.chip.on{background:var(--ink);color:var(--carta)}
+.chip:focus-visible,.card:focus-visible,.porta:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+#modi{display:flex;gap:6px;flex-wrap:wrap}
+
+main{position:fixed;inset:0;padding:calc(env(safe-area-inset-top,0px) + 96px) 16px calc(env(safe-area-inset-bottom,0px) + 16px);display:grid;grid-template-columns:1fr minmax(260px,340px);gap:18px}
+#tavolo{position:relative;min-width:0;min-height:0;overflow:auto;padding:6px}
+.zona{margin-bottom:14px}
+.zona .tit{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;opacity:.75}
+.griglia{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:9px}
+.griglia.scure{grid-template-columns:repeat(auto-fill,minmax(96px,1fr))}
+
+/* la carta */
+.card{position:relative;aspect-ratio:5/7;perspective:900px;animation:posa .6s cubic-bezier(.2,.7,.2,1) both}
+@keyframes posa{from{opacity:0;transform:translateY(14px) rotate(-2deg)}to{opacity:1;transform:none}}
+.card .in{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .65s cubic-bezier(.3,.7,.2,1.05);border-radius:9px;box-shadow:0 6px 16px -8px rgba(0,0,0,.45)}
+.card.up .in{transform:rotateY(180deg)}
+.card.rov.up .in{transform:rotateY(180deg) rotate(180deg)}
+.card .f{position:absolute;inset:0;border-radius:9px;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
+.card .dorso{background:var(--carta);border:1.5px solid rgba(27,23,17,.35);background-image:repeating-linear-gradient(45deg,transparent 0 6px,rgba(27,23,17,.07) 6px 7px),repeating-linear-gradient(-45deg,transparent 0 6px,rgba(27,23,17,.07) 6px 7px)}
+.card .dorso::after{content:"";position:absolute;inset:14%;border:1px solid rgba(27,23,17,.35);border-radius:50%}
+.card.s .dorso{background:var(--scuro);border-color:#000;background-image:repeating-linear-gradient(45deg,transparent 0 6px,rgba(255,255,255,.09) 6px 7px),repeating-linear-gradient(-45deg,transparent 0 6px,rgba(255,255,255,.09) 6px 7px)}
+.card.s .dorso::after{border-color:rgba(255,255,255,.4)}
+.card .faccia{transform:rotateY(180deg);background:var(--carta);border:1.5px solid var(--c);display:flex;flex-direction:column;justify-content:space-between;padding:8% 9%;color:var(--ink)}
+.card .faccia::before{content:"";position:absolute;left:0;top:0;right:0;height:9%;background:var(--c)}
+.card .faccia b{font-family:Marcellus,serif;font-weight:400;font-size:clamp(12px,1.25vw,17px);line-height:1.05;margin-top:12%;word-break:break-word}
+.card .faccia small{font:500 8px/1.3 "DM Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--c)}
+.card.s .faccia{background:var(--scuro);color:var(--carta);border-color:#000}
+.card.s .faccia b{font-family:"DM Mono",monospace;font-size:clamp(10px,1vw,13px);letter-spacing:.06em;text-transform:lowercase;line-height:1.25}
+.card.s .faccia small{color:rgba(251,246,234,.6)}
+.card.s .faccia::before{background:var(--c);opacity:.9}
+.card:hover .in{transform:translateY(-3px)}
+.card.up:hover .in{transform:rotateY(180deg) translateY(-3px)}
+.card.rov.up:hover .in{transform:rotateY(180deg) rotate(180deg) translateY(-3px)}
+.card.presa{animation:presa .5s ease;z-index:2}
+@keyframes presa{0%{transform:scale(1)}50%{transform:scale(1.1) rotate(1.5deg)}100%{transform:scale(1)}}
+.card.coppia .in{box-shadow:0 0 0 3px var(--tog),0 10px 20px -8px rgba(0,0,0,.4)}
+.card.ko .in{animation:ko .4s ease}
+@keyframes ko{0%,100%{transform:rotateY(180deg)}25%{transform:rotateY(180deg) translateX(-4px)}75%{transform:rotateY(180deg) translateX(4px)}}
+.card.fuori{opacity:.25;pointer-events:none}
+
+/* il banco a destra */
+#banco{display:flex;flex-direction:column;gap:12px;min-height:0;overflow:auto}
+.scheda{background:rgba(255,255,255,.55);border:1px solid rgba(27,23,17,.12);border-radius:14px;padding:16px 16px}
+.scheda h3{font-size:20px;margin-bottom:6px}
+.scheda p{font-size:14px;line-height:1.45;color:#3a3630}
+.stesa{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;min-height:20px}
+.stesa .pesc{font-family:Marcellus,serif;font-size:17px;padding:8px 12px;border-radius:9px;background:var(--carta);border:1.5px solid var(--c);border-top-width:5px;animation:posa .5s both}
+.stesa .pesc.s{background:var(--scuro);color:var(--carta);font-family:"DM Mono",monospace;font-size:13px;text-transform:lowercase;letter-spacing:.06em}
+.stesa .pesc.rov{text-decoration:line-through;text-decoration-color:var(--bod)}
+.stesa .pesc small{display:block;font:500 8.5px/1 "DM Mono",monospace;letter-spacing:.12em;text-transform:uppercase;opacity:.7;margin-top:4px}
+.porte{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.porta{font:500 14px/1.2 "Familjen Grotesk",sans-serif;background:var(--ink);color:var(--carta);border-radius:10px;padding:11px 14px;transition:transform .15s,background .25s}
+.porta:hover{background:#000}
+.porta:active{transform:scale(.97)}
+.porta.vuota{background:transparent;color:var(--ink);border:1.5px solid rgba(27,23,17,.4)}
+.porta.vuota:hover{background:rgba(27,23,17,.08)}
+.timer{display:flex;align-items:center;gap:12px;margin-top:8px}
+.timer .cifre{font-family:Marcellus,serif;font-size:44px;line-height:1;font-variant-numeric:tabular-nums;min-width:3.2em}
+.timer .cmd{display:flex;gap:6px;flex-wrap:wrap}
+.timer .cmd .porta{padding:8px 10px;font-size:12.5px}
+.barra{height:6px;border-radius:6px;background:rgba(27,23,17,.1);overflow:hidden;margin-top:8px}
+.barra i{display:block;height:100%;width:0;background:var(--ink);transition:width 1s linear}
+.esito{font-family:Marcellus,serif;font-size:17px;line-height:1.3;margin-top:8px;min-height:1em}
+.esito b{color:var(--tog)}
+
+
+@media (max-width:1000px){main{grid-template-columns:1fr;padding-top:calc(env(safe-area-inset-top,0px) + 120px)}#banco{order:-1;max-height:38vh}.mosse,.tappe,.tre{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.griglia,.griglia.scure{grid-template-columns:repeat(auto-fill,minmax(72px,1fr))}.mosse,.tappe,.tre{grid-template-columns:1fr}.riga{grid-template-columns:1fr;gap:4px}header .sx .mono{display:none}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01s!important;transition-duration:.01s!important}}
+</style>
+
+<header>
+  <div class="sx"><h1>Che cosa stiamo guardando</h1><span class="mono">IED Roma · Design 4 · Ecologies of Perception · il mazzo delle sessanta parole</span></div>
+  <div id="modi" role="group" aria-label="Modi di giocare">
+    <button class="chip mono on" data-modo="libero" type="button">gira le carte</button>
+    <button class="chip mono" data-modo="binomio" type="button">binomio</button>
+    <button class="chip mono" data-modo="tre" type="button">stesa a tre</button>
+    <button class="chip mono" data-modo="croce" type="button">croce</button>
+    <button class="chip mono" data-modo="memory" type="button">memory del rovescio</button>
+    <button class="chip mono" id="mescola" type="button">mescola</button>
+    <a class="chip mono" href="index.html" target="_blank" rel="noopener">la presentazione</a>
+  </div>
+</header>
+
+<main>
+  <section id="tavolo" aria-label="Il tavolo">
+    <div class="zona" id="z-chiare"><div class="tit"><span class="mono">quarantaquattro carte chiare · le parole al centro della mappa</span><span class="mono" id="n-chiare"></span></div><div class="griglia" id="g-chiare"></div></div>
+    <div class="zona" id="z-scure"><div class="tit"><span class="mono">sedici carte scure · il bordo della mappa</span><span class="mono" id="n-scure"></span></div><div class="griglia scure" id="g-scure"></div></div>
+    <div class="zona" id="z-memory" hidden><div class="tit"><span class="mono">trentadue carte · sedici coppie: ogni parola scura è il rovescio di una chiara</span><span class="mono" id="n-memory"></span></div><div class="griglia" id="g-memory"></div></div>
+  </section>
+
+  <aside id="banco">
+    <div class="scheda" id="regola">
+      <h3 id="r-tit">Gira le carte</h3>
+      <p id="r-txt">Tocca una carta per girarla. Le chiare sono le parole che il design vuole coltivare, le scure sono le mediazioni che ci lavorano addosso. Una carta su cinque esce capovolta: si legge al contrario.</p>
+      <div class="porte" id="r-porte"></div>
+      <div class="stesa" id="stesa"></div>
+      <p class="esito" id="esito"></p>
+    </div>
+    <div class="scheda">
+      <h3>Tempo</h3>
+      <div class="timer"><div class="cifre" id="cifre">25:00</div><div class="cmd"><button class="porta" id="t-avvia" type="button">Avvia</button><button class="porta vuota" data-min="8" type="button">8'</button><button class="porta vuota" data-min="25" type="button">25'</button><button class="porta vuota" data-min="5" type="button">5'</button></div></div>
+      <div class="barra"><i id="t-barra"></i></div>
+    </div>
+    <div class="scheda">
+      <h3>La regola della lettura</h3>
+      <p>Chi pesca non spiega la carta: la legge dentro la situazione che ha davanti. Care davanti a una telecamera dice una cosa, al tavolo con quattro persone che non si parlano ne dice un'altra. Una carta capovolta si legge al contrario.</p>
+    </div>
+  </aside>
+</main>
+
+
+<script>
+(function(){
+  const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+  const CALMO=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const COL={sen:'var(--sen)',bod:'var(--bod)',des:'var(--des)',wor:'var(--wor)',tog:'var(--tog)'};
+  const NOME={sen:'Sensibilità',bod:'Corpi',des:'Desiderio',wor:'Costruire mondi',tog:'Stare insieme'};
+  /* le quarantaquattro chiare, con il pilastro secondo la pagina 6 del Guide Book */
+  const CHIARE=[["Sensitivity","sen"],["Feeling","sen"],["Ecstasy","sen"],["Enchantment","sen"],["Loosing control","sen"],["Dream","sen"],["Freedom","sen"],["Awkward","sen"],["Truth","sen"],
+    ["Bodies","bod"],["Hybridization","bod"],["Non-human","bod"],["Cyborg","bod"],["Transformation","bod"],["Care","bod"],["Organisms","bod"],["Migration","bod"],
+    ["Desire","des"],["Joy","des"],["Identities","des"],["Myths","des"],["Celebrations","des"],["Foreigner","des"],["Rebellion","des"],["Play","des"],["Multiple temporalities","des"],
+    ["World building","wor"],["Imagination","wor"],["Collective rituals","wor"],["Collective memories","wor"],["Reparation","wor"],["Adaptability","wor"],["Disruption","wor"],["Counter-narratives","wor"],["Agency","wor"],
+    ["Togetherness","tog"],["Interdependence","tog"],["Commoning practices","tog"],["Ethics","tog"],["Peace","tog"],["Urban rituals","tog"],["Activism","tog"],["Ecosystems","tog"]];
+  /* le sedici scure, ognuna con il suo rovescio chiaro */
+  const SCURE=[["Surveillance","tog","Care"],["Data extraction","bod","Bodies"],["Deepfake","wor","Truth"],["Post-truth","wor","Collective memories"],["Profiling","bod","Identities"],["Desire engineering","des","Desire"],["Disorientation","sen","Enchantment"],["Simulation","sen","Play"],["Hallucination","sen","Imagination"],["Hyperobjects","wor","Ecosystems"],["Technographies","sen","Sensitivity"],["Hyper production","des","Multiple temporalities"],["Biohacking","bod","Cyborg"],["Mob / Herd","tog","Togetherness"],["Xenophobia","tog","Foreigner"],["Conspiracy","wor","Counter-narratives"]];
+  const PIL=Object.fromEntries(CHIARE.map(c=>[c[0],c[1]]));
+  const mesc=a=>{const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b};
+
+  /* ---------- suono ---------- */
+  let ctx=null; function nota(f,d,v){try{if(!ctx)ctx=new (window.AudioContext||window.webkitAudioContext)();if(ctx.state==='suspended')ctx.resume();const o=ctx.createOscillator(),g=ctx.createGain();o.type='sine';o.frequency.value=f;g.gain.setValueAtTime(.0001,ctx.currentTime);g.gain.exponentialRampToValueAtTime(v,ctx.currentTime+.015);g.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+d);o.connect(g);g.connect(ctx.destination);o.start();o.stop(ctx.currentTime+d+.05)}catch(e){}}
+  const tocco=()=>nota(880,.25,.05), bene=()=>{nota(523,.6,.06);setTimeout(()=>nota(784,.9,.06),120)}, fine=()=>{nota(523,2,.1);setTimeout(()=>nota(659,2,.09),350);setTimeout(()=>nota(784,2.6,.09),700)};
+
+  /* ---------- le carte ---------- */
+  function carta(w,p,scura,onClick){const c=document.createElement('button');c.type='button';c.className='card'+(scura?' s':'');c.style.setProperty('--c',COL[p]);c.dataset.w=w;c.dataset.p=p;c.dataset.s=scura?1:0;c.setAttribute('aria-label',w+(scura?', carta scura':''));
+    c.innerHTML=`<div class="in"><div class="f dorso"></div><div class="f faccia"><small>${scura?'rovescio · ':''}${NOME[p]}</small><b>${w}</b><small>${scura?'il bordo della mappa':'Ecologies of Perception'}</small></div></div>`;
+    c.addEventListener('click',()=>onClick(c));return c}
+  function gira(c,su){if(su===undefined)su=!c.classList.contains('up');if(su&&!c.classList.contains('up')){c.classList.toggle('rov',Math.random()<.2)}c.classList.toggle('up',su);tocco()}
+
+  let modo='libero', stesaAttesa=[], pescate=[];
+  function posaTavolo(){const gc=$('#g-chiare'),gs=$('#g-scure');gc.innerHTML='';gs.innerHTML='';let k=0;
+    mesc(CHIARE).forEach(([w,p])=>{const c=carta(w,p,false,clicCarta);c.style.animationDelay=(k++*.012)+'s';gc.appendChild(c)});
+    mesc(SCURE).forEach(([w,p])=>{const c=carta(w,p,true,clicCarta);c.style.animationDelay=(k++*.012)+'s';gs.appendChild(c)});
+    $('#n-chiare').textContent='44';$('#n-scure').textContent='16';pescate=[];mostraStesa()}
+  function clicCarta(c){
+    if(modo==='libero'){gira(c);mostraLettura(c);return}
+    if(modo==='memory'){clicMemory(c);return}
+    // nelle stese: la carta toccata entra nella stesa se la stesa aspetta quel tipo
+    if(!stesaAttesa.length)return; const vuole=stesaAttesa[0]; const tipo=c.dataset.s==='1'?'s':'c';
+    if(vuole!=='x'&&vuole!==tipo){ $('#esito').textContent= vuole==='s'?'Adesso tocca a una carta scura.':'Adesso tocca a una carta chiara.'; return }
+    if(c.classList.contains('up'))return; stesaAttesa.shift(); gira(c,true); c.classList.add('presa'); pescate.push(c); mostraStesa();
+    if(!stesaAttesa.length) chiusaStesa();
+  }
+  function pescaCaso(tipo){const pool=$$((tipo==='s'?'#g-scure':tipo==='c'?'#g-chiare':'#tavolo')+' .card:not(.up)');const c=pool[Math.floor(Math.random()*pool.length)];if(c){c.scrollIntoView({block:'nearest',behavior:CALMO?'auto':'smooth'});clicCarta(c)}}
+  function mostraStesa(){const s=$('#stesa');s.innerHTML='';pescate.forEach((c,i)=>{const d=document.createElement('span');d.className='pesc'+(c.dataset.s==='1'?' s':'')+(c.classList.contains('rov')?' rov':'');d.style.setProperty('--c',COL[c.dataset.p]);d.innerHTML=c.dataset.w+(POS[modo]&&POS[modo][i]?'<small>'+POS[modo][i]+'</small>':'')+(c.classList.contains('rov')?'<small>capovolta</small>':'');s.appendChild(d)})}
+  function mostraLettura(c){const w=c.dataset.w,p=c.dataset.p,s=c.dataset.s==='1';const rov=SCURE.find(x=>x[0]===w);const dritto=SCURE.find(x=>x[2]===w);
+    $('#esito').innerHTML=c.classList.contains('up')?`<b>${w}</b> · ${NOME[p]}${s?' · bordo della mappa':''}${c.classList.contains('rov')?' · <b>capovolta</b>: si legge al contrario':''}${rov?`<br>Rovescio di <b>${rov[2]}</b>.`:dritto?`<br>Il suo rovescio è <b>${dritto[0]}</b>.`:''}`:''}
+
+  const POS={binomio:['chiara','scura'],tre:['da dove veniamo','dove siamo','dove potremmo andare'],croce:['al centro','sopra','sotto','a sinistra','a destra']};
+  const REGOLE={
+    libero:{t:'Gira le carte',x:'Tocca una carta per girarla. Le chiare sono le parole che il design vuole coltivare, le scure sono le mediazioni che ci lavorano addosso. Una carta su cinque esce capovolta: si legge al contrario.',p:[]},
+    binomio:{t:'Il binomio fantastico',x:'Una carta chiara e una scura, lontane per costruzione. Il gruppo inventa una cosa che le tiene insieme, un oggetto, un servizio, un rito, una campagna, e la disegna su un A3 con un titolo. Venticinque minuti, poi un minuto per presentarla.',p:[['Pesca il binomio','auto'],['Scelgo io le carte','mano']],att:['c','s']},
+    tre:{t:'Stesa a tre',x:'Tre carte in fila: da dove veniamo, dove siamo, dove potremmo andare. Il gruppo racconta la storia che le tiene insieme, poi scrive dieci istruzioni per vederla, da dare a un altro gruppo.',p:[['Pesca tre carte','auto'],['Scelgo io','mano']],att:['x','x','x']},
+    croce:{t:'La croce',x:'Una carta al centro e quattro intorno. È già la forma della stesa finale: la parola chiave e le parole che le appartengono. Almeno una delle quattro è scura.',p:[['Pesca la croce','auto'],['Scelgo io','mano']],att:['c','x','x','x','s']},
+    memory:{t:'Memory del rovescio',x:'Trentadue carte coperte. Ogni parola scura è il rovescio di una chiara: Truth e post-truth, Play e simulation, Care e surveillance. Si girano due carte alla volta. La coppia resta scoperta e la classe dice in una frase perché sono la stessa cosa vista da due lati.',p:[['Nuova partita','memory']]}
+  };
+  function setModo(m){modo=m;$$('#modi [data-modo]').forEach(b=>b.classList.toggle('on',b.dataset.modo===m));const r=REGOLE[m];$('#r-tit').textContent=r.t;$('#r-txt').textContent=r.x;$('#esito').textContent='';
+    const P=$('#r-porte');P.innerHTML='';r.p.forEach(([t,a],i)=>{const b=document.createElement('button');b.type='button';b.className='porta'+(i?' vuota':'');b.textContent=t;b.addEventListener('click',()=>azione(a));P.appendChild(b)});
+    const mem=m==='memory';$('#z-memory').hidden=!mem;$('#z-chiare').hidden=mem;$('#z-scure').hidden=mem;
+    if(mem){nuovaMemory()} else {$$('#g-chiare .card.up, #g-scure .card.up').forEach(c=>c.classList.remove('up','rov','presa'));pescate=[];stesaAttesa=r.att?r.att.slice():[];mostraStesa();if(r.att)$('#esito').textContent=m==='binomio'?'Tocca «Pesca il binomio», oppure scegli tu: prima una chiara, poi una scura.':'Pesca, oppure tocca le carte che vuoi.'}}
+  function azione(a){const r=REGOLE[modo];if(a==='memory'){nuovaMemory();return}
+    $$('#g-chiare .card.up, #g-scure .card.up').forEach(c=>c.classList.remove('up','rov','presa'));pescate=[];stesaAttesa=r.att.slice();mostraStesa();
+    if(a==='auto'){let i=0;const seq=r.att.slice();(function next(){if(!seq.length)return;const t=seq.shift();setTimeout(()=>{pescaCaso(t);next()},i++?650:0)})()}
+    else $('#esito').textContent='Tocca le carte sul tavolo, nell\'ordine.'}
+  function chiusaStesa(){bene();const ws=pescate.map(c=>c.dataset.w);let t='';
+    if(modo==='binomio')t=`<b>${ws[0]}</b> e <b>${ws[1]}</b>. Che cosa le tiene insieme? Venticinque minuti.`;
+    if(modo==='tre')t=`Da <b>${ws[0]}</b>, attraverso <b>${ws[1]}</b>, verso <b>${ws[2]}</b>. Raccontate la storia.`;
+    if(modo==='croce')t=`<b>${ws[0]}</b> al centro. Intorno ${ws.slice(1).join(', ')}. Questa è la vostra stesa.`;
+    if(pescate.some(c=>c.classList.contains('rov')))t+=' Una carta è capovolta: si legge al contrario.';
+    $('#esito').innerHTML=t}
+
+  /* ---------- memory ---------- */
+  let aperte=[],blocco=false,trovate=0;
+  function nuovaMemory(){const g=$('#g-memory');g.innerHTML='';aperte=[];blocco=false;trovate=0;const mazzo=[];SCURE.forEach(([s,p,ch])=>{mazzo.push([s,p,true,ch]);mazzo.push([ch,PIL[ch]||p,false,s])});
+    mesc(mazzo).forEach(([w,p,s,partner],k)=>{const c=carta(w,p,s,clicMemory);c.dataset.partner=partner;c.style.animationDelay=(k*.02)+'s';g.appendChild(c)});$('#n-memory').textContent='0 / 16';$('#esito').textContent='Gira due carte.'}
+  function clicMemory(c){if(blocco||c.classList.contains('up')||c.classList.contains('coppia'))return;c.classList.remove('rov');c.classList.add('up');tocco();aperte.push(c);
+    if(aperte.length===2){const[a,b]=aperte;blocco=true;
+      if(a.dataset.partner===b.dataset.w){setTimeout(()=>{a.classList.add('coppia');b.classList.add('coppia');trovate++;$('#n-memory').textContent=trovate+' / 16';const ch=a.dataset.s==='1'?b:a,sc=a.dataset.s==='1'?a:b;$('#esito').innerHTML=`<b>${ch.dataset.w}</b> e <b>${sc.dataset.w}</b>: la stessa cosa vista da due lati. Ditelo in una frase.${trovate===16?' Tutte le coppie trovate.':''}`;bene();aperte=[];blocco=false},350)}
+      else{setTimeout(()=>{a.classList.add('ko');b.classList.add('ko')},350);setTimeout(()=>{a.classList.remove('up','ko');b.classList.remove('up','ko');aperte=[];blocco=false},1100);$('#esito').textContent='Non sono il rovescio l\'una dell\'altra.'}}}
+
+  /* ---------- il tempo ---------- */
+  let tot=25*60,resta=tot,tid=null;const fmt=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
+  function mostraT(){$('#cifre').textContent=fmt(resta);$('#t-barra').style.width=((1-resta/tot)*100).toFixed(1)+'%'}
+  function avviaT(){if(tid||resta<=0)return;tid=setInterval(()=>{resta--;mostraT();if(resta<=0){fermaT();fine()}},1000);$('#t-avvia').textContent='Ferma'}
+  function fermaT(){clearInterval(tid);tid=null;$('#t-avvia').textContent=resta<tot&&resta>0?'Riprendi':'Avvia'}
+  $('#t-avvia').addEventListener('click',()=>tid?fermaT():avviaT());
+  $$('.timer [data-min]').forEach(b=>b.addEventListener('click',()=>{fermaT();tot=resta=+b.dataset.min*60;mostraT();$('#t-avvia').textContent='Avvia'}));
+  mostraT();
+
+  /* ---------- tastiera, avvio ---------- */
+  $$('#modi [data-modo]').forEach(b=>b.addEventListener('click',()=>setModo(b.dataset.modo)));
+  $('#mescola').addEventListener('click',()=>{if(modo==='memory')nuovaMemory();else{posaTavolo();setModo(modo)}});
+  document.addEventListener('keydown',e=>{if(e.metaKey||e.ctrlKey||e.altKey)return;const k=e.key.toLowerCase();
+    if(k==='b')setModo('binomio');else if(k==='t')setModo('tre');else if(k==='c')setModo('croce');else if(k==='m')setModo('memory');else if(k==='r')$('#mescola').click();
+    else if(e.key===' '){e.preventDefault();tid?fermaT():avviaT()}
+    else if(e.key==='Enter'&&REGOLE[modo].att){azione('auto')}});
+  posaTavolo();setModo('libero');
+})();
+</script>
+
+</body>
+</html>

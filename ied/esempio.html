@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chi si prende cura di chi guarda</title>
+<meta name="description" content="Un esempio inventato di stesa finale: A3 con mappa, parola chiave, fotografia e abstract.">
+<meta property="og:title" content="Chi si prende cura di chi guarda"><meta property="og:description" content="Un esempio inventato di stesa finale: A3 con mappa, parola chiave, fotografia e abstract."><meta property="og:type" content="website">
+<meta name="robots" content="noindex">
+<style>[hidden]{display:none!important}body{margin:0}</style>
+</head>
+<body>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Familjen+Grotesk:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Un A3 orizzontale finto, per far vedere la forma della consegna. Foglio 420x297 in proporzione, dentro una pagina scura. */
+:root{--carta:#F7F1E4;--ink:#1B1711;--tog:#3EA377;--tog-c:#D3EEDF;--scuro:#6E6A62;--rosso:#E25A3F;color-scheme:light}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#2a2622;color:var(--ink);font-family:"Familjen Grotesk",system-ui,sans-serif;padding:24px 16px 40px;min-height:100%}
+.nota{max-width:1200px;margin:0 auto 14px;color:#cfc6b6;font:500 11px/1.6 "DM Mono",monospace;letter-spacing:.1em;text-transform:uppercase}
+.nota b{color:#F0B955;font-weight:500}
+.foglio{position:relative;max-width:1200px;margin:0 auto;aspect-ratio:420/297;background:var(--carta);box-shadow:0 30px 80px -30px rgba(0,0,0,.8);padding:3.2% 3.4%;display:grid;grid-template-columns:1.25fr 1fr;grid-template-rows:auto 1fr auto;gap:2% 3%;overflow:hidden;font-size:clamp(9px,1.05vw,13px)}
+.testa{grid-column:1/3;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1.5px solid var(--ink);padding-bottom:1.2%}
+.testa .mono{font:500 .78em/1 "DM Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--scuro)}
+.testa h1{font-family:Marcellus,serif;font-weight:400;font-size:3.6em;line-height:1;margin-top:.25em;letter-spacing:-.01em}
+.testa h1 span{color:var(--tog)}
+.testa .sotto{font-size:1.1em;margin-top:.5em;max-width:40em;color:#3a3630}
+.mappa{position:relative;min-height:0;border:1px solid rgba(27,23,17,.15);border-radius:1.5%/2%;background:#FBF7EE}
+.mappa svg{position:absolute;inset:0;width:100%;height:100%}
+.w{position:absolute;transform:translate(-50%,-50%);font-family:Marcellus,serif;font-size:1.05em;white-space:nowrap;color:rgba(27,23,17,.28);letter-spacing:.02em;text-transform:uppercase}
+.w.on{color:var(--ink);background:var(--tog-c);padding:.25em .5em;border-radius:.3em;font-size:1.15em}
+.w.key{color:#fff;background:var(--tog);font-size:2em;padding:.3em .6em;border-radius:.3em;box-shadow:0 0 0 .5em rgba(62,163,119,.18)}
+.w.dark{font-family:"DM Mono",monospace;text-transform:lowercase;font-size:.78em;letter-spacing:.08em;color:rgba(27,23,17,.3)}
+.w.dark.on{color:#fff;background:var(--ink);padding:.3em .55em;font-size:.85em}
+.w a{color:inherit;text-decoration:underline dotted}
+.lato{display:flex;flex-direction:column;gap:4%;min-height:0}
+.foto{border:1px solid rgba(27,23,17,.2);background:linear-gradient(135deg,#d8d2c4,#b9b2a4);aspect-ratio:3/2;position:relative;overflow:hidden;border-radius:.4em}
+.foto .cam{position:absolute;right:12%;top:14%;width:16%;aspect-ratio:1.4;background:#2a2622;border-radius:.3em}
+.foto .cam::after{content:"";position:absolute;right:-18%;top:30%;width:22%;height:40%;background:#2a2622;border-radius:0 .3em .3em 0}
+.foto .palo{position:absolute;right:19%;top:34%;width:2%;height:70%;background:#2a2622}
+.foto .bigl{position:absolute;left:14%;bottom:12%;width:36%;aspect-ratio:1.5;background:#fff8dc;transform:rotate(-6deg);box-shadow:0 3px 10px rgba(0,0,0,.25);font-family:Marcellus,serif;font-size:.8em;padding:5% 7%;line-height:1.25;color:#333}
+.foto figcaption{position:absolute;left:0;right:0;bottom:0;background:rgba(27,23,17,.78);color:var(--carta);font:500 .72em/1.5 "DM Mono",monospace;padding:.5em .9em;letter-spacing:.04em}
+.abs{flex:1;min-height:0;overflow:hidden;font-size:.98em;line-height:1.42;color:#2a2622;column-gap:1.6em}
+.abs h2{font:500 .78em/1 "DM Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--tog);margin-bottom:.9em}
+.abs p+p{margin-top:.7em}
+.abs a{color:var(--tog);text-decoration:underline}
+.pie{grid-column:1/3;display:flex;justify-content:space-between;gap:2em;border-top:1px solid rgba(27,23,17,.25);padding-top:1%;font:500 .72em/1.6 "DM Mono",monospace;letter-spacing:.08em;color:var(--scuro)}
+.pie a{color:var(--ink)}
+@media (max-width:760px){.foglio{aspect-ratio:auto;grid-template-columns:1fr;font-size:12px}.testa,.pie{grid-column:1}.mappa{aspect-ratio:4/3}.abs{overflow:visible}}
+</style>
+
+<p class="nota"><b>Esempio inventato</b> per far vedere la forma della consegna · un A3 orizzontale · fatto da Claude il 10/11/26, non da IED né da studenti</p>
+
+<article class="foglio">
+  <header class="testa">
+    <div>
+      <div class="mono">Ecologies of Perception · Design 4 · IED Roma 2026/27 · Gruppo 3: Aurora, Davide, Lin, Sara</div>
+      <h1>Chi si prende cura <span>di chi guarda</span></h1>
+      <p class="sotto">Un filo da Care a Surveillance: che cosa succede alla cura quando qualcuno la fa al posto nostro, con una telecamera.</p>
+    </div>
+    <div class="mono" style="text-align:right">Thread · parola chiave: CARE<br>20 gennaio 2027</div>
+  </header>
+
+  <section class="mappa" aria-label="La mappa del gruppo">
+    <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+      <g stroke="#3EA377" stroke-width=".35" stroke-dasharray="1 1.2" fill="none" opacity=".9">
+        <path d="M50 50 L34 36"/><path d="M50 50 L66 38"/><path d="M50 50 L72 56"/><path d="M50 50 L62 70"/><path d="M50 50 L36 66"/><path d="M50 50 L28 52"/>
+        <path d="M34 36 L18 24"/><path d="M66 38 L80 20"/><path d="M72 56 L90 60"/><path d="M62 70 L74 86"/><path d="M36 66 L22 84"/><path d="M28 52 L10 48"/>
+      </g>
+      <g stroke="#1B1711" stroke-width=".3" fill="none" opacity=".55"><path d="M18 24 L10 48"/><path d="M80 20 L90 60"/><path d="M74 86 L22 84"/></g>
+    </svg>
+    <!-- parola chiave -->
+    <span class="w key" style="left:50%;top:50%">Care</span>
+    <!-- parole collegate -->
+    <span class="w on" style="left:34%;top:36%">Bodies</span>
+    <span class="w on" style="left:66%;top:38%">Interdependence</span>
+    <span class="w on" style="left:72%;top:56%">Commoning</span>
+    <span class="w on" style="left:62%;top:70%">Ethics</span>
+    <span class="w on" style="left:36%;top:66%">Urban rituals</span>
+    <span class="w on" style="left:28%;top:52%">Feeling</span>
+    <!-- lato scuro acceso -->
+    <span class="w dark on" style="left:18%;top:24%">surveillance</span>
+    <span class="w dark on" style="left:80%;top:20%">profiling</span>
+    <span class="w dark on" style="left:90%;top:60%">data extraction</span>
+    <span class="w dark on" style="left:74%;top:86%">mob / herd</span>
+    <span class="w dark on" style="left:22%;top:84%">disorientation</span>
+    <span class="w dark on" style="left:10%;top:48%">technographies</span>
+    <!-- il resto della mappa, spento -->
+    <span class="w" style="left:48%;top:14%">Togetherness</span><span class="w" style="left:30%;top:16%">Sensitivity</span><span class="w" style="left:62%;top:10%">Play</span>
+    <span class="w" style="left:84%;top:40%">Reparation</span><span class="w" style="left:88%;top:76%">World building</span><span class="w" style="left:52%;top:90%">Desire</span>
+    <span class="w" style="left:40%;top:88%">Joy</span><span class="w" style="left:12%;top:68%">Dream</span><span class="w" style="left:14%;top:34%">Enchantment</span>
+    <span class="w" style="left:50%;top:30%">Hybridization</span><span class="w" style="left:76%;top:30%">Agency</span><span class="w" style="left:50%;top:70%">Identities</span>
+    <span class="w" style="left:24%;top:72%">Awkward</span><span class="w" style="left:70%;top:90%">Myths</span><span class="w" style="left:86%;top:90%">Truth</span>
+    <span class="w" style="left:6%;top:88%">Freedom</span><span class="w" style="left:94%;top:10%">Activism</span><span class="w" style="left:8%;top:10%">Ecosystems</span>
+  </section>
+
+  <aside class="lato">
+    <figure class="foto">
+      <div class="palo"></div><div class="cam"></div>
+      <div class="bigl">«Se vedi che non torno a casa, chiama mia figlia. 338…»</div>
+      <figcaption>Via Giovanni Branca, 8 gennaio 2027. Telecamera condominiale e bigliettino di una vicina, fotografati durante l'uscita in città.</figcaption>
+    </figure>
+    <div class="abs">
+      <h2>Abstract · 300 parole</h2>
+      <p>Siamo partiti da un gioco: a novembre ci sono toccate due parole lontane, Care e Surveillance, e in venticinque minuti avevamo inventato un citofono che chiede «come stai» prima di aprire. Ridevamo. Poi ci siamo accorti che quel citofono esiste già, in forma di telecamera, e che nessuno gli ha chiesto di prendersi cura di noi.</p>
+      <p>Il nostro filo attraversa la mappa da Care verso il bordo. Abbiamo acceso Bodies, perché la cura passa dal corpo di chi la fa e di chi la riceve; Interdependence e Commoning, perché nel quartiere la cura era una rete di vicini prima di diventare un servizio; Feeling e Urban rituals, perché la signora del secondo piano guardava dalla finestra ogni sera alla stessa ora. Dal lato scuro abbiamo tenuto Surveillance, Profiling e Data extraction, che sono la stessa funzione svolta da un'infrastruttura, e Disorientation e Mob/Herd, che sono quello che resta quando lo sguardo è ovunque e non è di nessuno.</p>
+      <p>L'8 gennaio, in via Branca, abbiamo fotografato una telecamera condominiale con sotto un bigliettino scritto a mano da una vicina. In quell'immagine c'è tutta la nostra domanda: due modi di guardare uno sopra l'altro, uno che registra e uno che si preoccupa. Abbiamo letto <a href="#">Haraway</a> sul restare nel problema e <a href="#">Crary</a> sul tempo che non si lascia sorvegliare, e abbiamo deciso che la tesi partirà da qui: progettare per un quartiere un modo di guardarsi che non sia una telecamera.</p>
+      <p>Abbiamo tagliato Reparation e Activism, che ci portavano verso una campagna, mentre a noi interessa un oggetto quotidiano. La mappa è il percorso dal gioco alla domanda.</p>
+    </div>
+  </aside>
+
+  <footer class="pie">
+    <span>Riferimenti (link attivi nel PDF): D. Haraway, <a href="#">Chthulucene</a> · J. Crary, <a href="#">24/7</a> · J. Bridle, <a href="#">Modi d'essere</a> · fotografie del gruppo (cartella condivisa)</span>
+    <span>Mappa rielaborata dal Guide Book IED · PDF interattivo A3 orizzontale</span>
+  </footer>
+</article>
+
+</body>
+</html>

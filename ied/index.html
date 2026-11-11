@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Il mazzo delle sessanta parole</title>
+<meta name="description" content="Il corso Design 4 di Maura Gancitano allo IED Roma, 2026/27: il mazzo delle sessanta parole di Ecologies of Perception.">
+<meta property="og:title" content="Il mazzo delle sessanta parole"><meta property="og:description" content="Il corso Design 4 di Maura Gancitano allo IED Roma, 2026/27: il mazzo delle sessanta parole di Ecologies of Perception."><meta property="og:type" content="website">
+<meta name="robots" content="noindex">
+<style>[hidden]{display:none!important}body{margin:0}</style>
+</head>
+<body>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Familjen+Grotesk:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Presentazione del corso, una schermata alla volta, con le frecce. Il filo è il mazzo: arcani, rovescio, stese, lettura. Colori pieni, un colore per arcano. */
+:root{--carta:#F7F1E4;--ink:#1B1711;--sen:#E3A63A;--bod:#E25A3F;--des:#C8457F;--wor:#3F72C4;--tog:#3EA377;--notte:#1B1711;--grigio:#6E6A62;
+  --bg:#F7F1E4;--fg:#1B1711;--u:min(1vw,1.78vh);color-scheme:light}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden}
+body{background:var(--bg);color:var(--fg);font-family:"Familjen Grotesk",system-ui,sans-serif;transition:background 1s cubic-bezier(.2,.7,.2,1),color .8s}
+button{font-family:inherit;color:inherit;background:none;border:0;cursor:pointer}
+a{color:inherit}
+.mono{font:500 10.5px/1 "DM Mono",monospace;letter-spacing:.14em;text-transform:uppercase}
+h1,h2,h3{font-family:Marcellus,serif;font-weight:400;line-height:1.02;letter-spacing:-.005em;text-wrap:balance}
+#barra{position:fixed;left:0;right:0;top:env(safe-area-inset-top,0px);z-index:20;display:flex;gap:3px;padding:0 10px}
+#barra i{flex:1;height:5px;border-radius:0 0 4px 4px;background:var(--c);opacity:.28;transition:opacity .4s,transform .3s;cursor:pointer}
+#barra i.fatto{opacity:.75}#barra i.ora{opacity:1;transform:scaleY(1.6)}
+header{position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);left:16px;right:16px;display:flex;justify-content:space-between;align-items:center;z-index:20;opacity:.8}
+.chip{padding:7px 11px;border-radius:99px;background:rgba(27,23,17,.1);border:1px solid rgba(27,23,17,.08)}
+.sch{position:fixed;inset:0;display:flex;flex-direction:column;justify-content:center;padding:calc(env(safe-area-inset-top,0px) + 76px) clamp(18px,7vw,110px) calc(env(safe-area-inset-bottom,0px) + 90px);opacity:0;pointer-events:none;transform:translateX(4vw) scale(.985);transition:opacity .7s,transform .9s cubic-bezier(.2,.7,.2,1);overflow:auto}
+.sch.ora{opacity:1;pointer-events:auto;transform:none}
+.sch.via{transform:translateX(-4vw) scale(.985)}
+.sch.ora>*{animation:fuoco 1s cubic-bezier(.2,.7,.2,1) both}
+.sch.ora>*:nth-child(2){animation-delay:.12s}.sch.ora>*:nth-child(3){animation-delay:.24s}.sch.ora>*:nth-child(4){animation-delay:.36s}.sch.ora>*:nth-child(5){animation-delay:.48s}
+@keyframes fuoco{from{opacity:0;filter:blur(12px);transform:translateY(14px)}to{opacity:1;filter:blur(0);transform:none}}
+.occh{opacity:.8;margin-bottom:16px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.occh b{font-weight:500;padding:5px 9px;border-radius:99px;background:rgba(27,23,17,.1)}
+.sch h1{font-size:clamp(44px,calc(var(--u)*9),120px);max-width:12em}
+.sch h2{font-size:clamp(32px,calc(var(--u)*6),80px);max-width:14em}
+.sch .lede{font-size:clamp(17px,calc(var(--u)*2.1),26px);line-height:1.4;max-width:36em;margin-top:22px;opacity:.92}
+.sch .lede+.lede{margin-top:12px}
+.sch .grande{font-family:Marcellus,serif;font-size:clamp(24px,calc(var(--u)*4),56px);line-height:1.15;max-width:22em;margin-top:18px}
+#nav{position:fixed;left:16px;right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 18px);display:flex;justify-content:space-between;align-items:center;z-index:20;pointer-events:none}
+#nav>*{pointer-events:auto}
+#nav .freccia{width:52px;height:52px;border-radius:50%;background:var(--fg);color:var(--bg);font-size:22px;display:grid;place-items:center;box-shadow:0 10px 30px -12px rgba(0,0,0,.5);transition:transform .2s,opacity .3s}
+#nav .freccia:hover{transform:scale(1.06)}
+#nav .freccia[disabled]{opacity:.2}
+#nav .dove{font:500 11px/1.5 "DM Mono",monospace;letter-spacing:.1em;text-transform:uppercase;text-align:center;opacity:.75}
+
+/* carte */
+.ventaglio{position:relative;height:clamp(180px,34vh,340px);margin-top:28px}
+.ventaglio .k{position:absolute;left:50%;bottom:0;width:clamp(70px,9vw,120px);aspect-ratio:5/7;border-radius:8px;background:var(--carta);border:1.5px solid rgba(27,23,17,.4);transform-origin:50% 120%;box-shadow:0 8px 20px -10px rgba(0,0,0,.5);background-image:repeating-linear-gradient(45deg,transparent 0 6px,rgba(27,23,17,.08) 6px 7px),repeating-linear-gradient(-45deg,transparent 0 6px,rgba(27,23,17,.08) 6px 7px);animation:apri 1.2s cubic-bezier(.2,.7,.2,1) both}
+.ventaglio .k::after{content:"";position:absolute;inset:14%;border:1px solid rgba(27,23,17,.35);border-radius:50%}
+.ventaglio .k.s{background:var(--notte);border-color:#000;background-image:repeating-linear-gradient(45deg,transparent 0 6px,rgba(255,255,255,.1) 6px 7px),repeating-linear-gradient(-45deg,transparent 0 6px,rgba(255,255,255,.1) 6px 7px)}
+.ventaglio .k.s::after{border-color:rgba(255,255,255,.4)}
+@keyframes apri{from{transform:translateX(-50%) rotate(0deg)}to{transform:translateX(-50%) rotate(var(--r))}}
+.arcani{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:26px}
+.arc{aspect-ratio:5/7;border-radius:14px;background:var(--c);color:#fff;padding:7% 8%;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:transform .4s cubic-bezier(.2,.7,.2,1);box-shadow:0 20px 40px -24px rgba(0,0,0,.6)}
+.arc:hover{transform:translateY(-8px) rotate(-1deg)}
+.arc::before{content:"";position:absolute;inset:5%;border:1px solid rgba(255,255,255,.45);border-radius:9px;pointer-events:none}
+.arc .num{font-family:Marcellus,serif;font-size:clamp(14px,1.6vw,22px);opacity:.9}
+.arc svg{width:62%;margin:auto;display:block;opacity:.95}
+.arc b{font-family:Marcellus,serif;font-weight:400;font-size:clamp(16px,1.9vw,28px);line-height:1;text-align:center}
+.arc small{font:500 9px/1.4 "DM Mono",monospace;letter-spacing:.12em;text-transform:uppercase;text-align:center;opacity:.85;margin-top:5px}
+.arc p{font-size:clamp(10px,.95vw,13px);line-height:1.35;opacity:.95;text-align:center;margin-top:8px}
+.coppie{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:22px}
+.cp{display:grid;grid-template-columns:1fr 1fr;gap:6px;align-items:stretch}
+.cp span{border-radius:9px;padding:12px 10px;font-family:Marcellus,serif;font-size:clamp(13px,1.3vw,18px);background:var(--carta);border:1.5px solid var(--c);border-top-width:5px;color:var(--ink)}
+.cp span+span{background:var(--notte);color:var(--carta);font-family:"DM Mono",monospace;font-size:clamp(10px,1vw,12.5px);letter-spacing:.05em;text-transform:lowercase;transform:rotate(180deg);border-color:#000}
+.stese{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:26px}
+.stesa{background:rgba(255,255,255,.45);border:1px solid rgba(27,23,17,.12);border-radius:14px;padding:16px}
+.stesa b{display:block;font-family:Marcellus,serif;font-weight:400;font-size:clamp(20px,2.2vw,28px);margin-bottom:6px}
+.stesa p{font-size:13.5px;line-height:1.45;color:#3a3630}
+.stesa .dis{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;width:min(100%,120px);margin:10px 0}
+.stesa .dis i{aspect-ratio:5/7;border-radius:3px;background:rgba(27,23,17,.12)}
+.stesa .dis i.c{background:var(--c,var(--sen))}
+.stesa .dis i.s{background:var(--notte)}
+.tappe{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin-top:24px}
+.tappa{border-radius:14px;padding:16px 14px;background:var(--c);color:#fff;min-height:220px;display:flex;flex-direction:column;gap:6px;transition:transform .35s}
+.tappa:hover{transform:translateY(-6px)}
+.tappa .n{font-family:Marcellus,serif;font-size:30px;line-height:1}
+.tappa b{font-family:Marcellus,serif;font-weight:400;font-size:clamp(18px,2.2vw,26px)}
+.tappa small{font:500 10px/1.5 "DM Mono",monospace;letter-spacing:.08em;opacity:.9}
+.tappa p{font-size:13px;line-height:1.4;opacity:.95;margin-top:auto}
+.tre{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px}
+.filo{border-radius:18px;padding:22px 20px;background:var(--c);color:#fff;display:flex;flex-direction:column;gap:10px}
+.filo small{font:500 10px/1 "DM Mono",monospace;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+.filo b{font-family:Marcellus,serif;font-weight:400;font-size:clamp(26px,3.2vw,42px)}
+.filo p{font-size:14.5px;line-height:1.45}
+.filo .d{margin-top:auto;padding-top:12px;border-top:1px solid rgba(255,255,255,.4);font-family:Marcellus,serif;font-size:clamp(17px,2vw,24px)}
+.righe{margin-top:22px;border-top:1.5px solid rgba(27,23,17,.35);max-width:900px}
+.riga{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:13px 0;border-bottom:1px solid rgba(27,23,17,.18)}
+.riga .k{font:500 10.5px/1.7 "DM Mono",monospace;letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+.riga .v{font-size:clamp(15px,calc(var(--u)*1.75),19px);line-height:1.45}
+.giri{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:24px}
+.giro{border-radius:14px;padding:16px;background:var(--c);color:#fff;min-height:190px;display:flex;flex-direction:column;gap:6px}
+.giro small{font:500 10px/1 "DM Mono",monospace;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+.giro b{font-family:Marcellus,serif;font-weight:400;font-size:clamp(18px,2vw,26px)}
+.giro p{font-size:13px;line-height:1.4;margin-top:auto}
+.btn{display:inline-block;margin-top:24px;background:var(--fg);color:var(--bg);border-radius:12px;padding:14px 18px;font-weight:500;text-decoration:none}
+#indice{position:fixed;inset:0;z-index:30;background:rgba(27,23,17,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--carta);opacity:0;pointer-events:none;transition:opacity .4s;overflow:auto;padding:calc(env(safe-area-inset-top,0px) + 70px) clamp(16px,6vw,80px) 60px}
+#indice.on{opacity:1;pointer-events:auto}
+#indice h2{font-size:clamp(28px,4vw,52px);margin-bottom:20px}
+#indice ol{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:6px}
+#indice li button{width:100%;text-align:left;display:grid;grid-template-columns:14px 1fr;gap:12px;align-items:center;padding:11px 10px;border-radius:12px;color:var(--carta)}
+#indice li button:hover{background:rgba(255,255,255,.1)}
+#indice li i{width:14px;height:14px;border-radius:50%;background:var(--c)}
+@media (max-width:1000px){.arcani,.giri{grid-template-columns:repeat(3,1fr)}.tappe{grid-template-columns:repeat(2,1fr)}.tre,.stese{grid-template-columns:1fr 1fr}.coppie{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.sch{justify-content:flex-start;padding-left:16px;padding-right:16px}.arcani,.tappe,.tre,.stese,.giri,.coppie{grid-template-columns:1fr}.arcani{grid-template-columns:1fr 1fr}.riga{grid-template-columns:1fr;gap:4px}#nav .dove{display:none}.ventaglio{height:160px}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01s!important;transition-duration:.01s!important}}
+</style>
+
+<div id="barra" aria-hidden="true"></div>
+<header><span class="mono">IED Roma · Design 4 · Ecologies of Perception · 2026/27</span><button class="chip mono" id="apri-indice" type="button">indice</button></header>
+
+<!-- 1 -->
+<section class="sch" data-c="var(--sen)" data-bg="#F7F1E4" data-fg="#1B1711" data-nome="Soglia">
+  <div class="occh mono"><b>Percorso di preparazione alla tesi</b><span>Maura Gancitano · sette incontri · 11 novembre 2026 · 20 gennaio 2027</span></div>
+  <h1>Che cosa stiamo guardando</h1>
+  <p class="lede">IED vi ha dato sessanta parole per pensare la tesi. Noi le trattiamo come un mazzo di carte. In sette incontri imparate a leggerlo. A gennaio ogni gruppo consegna la sua stesa. Da lì parte la vostra tesi.</p>
+  <div class="ventaglio" aria-hidden="true"></div>
+</section>
+
+<!-- 2 -->
+<section class="sch" data-c="var(--des)" data-bg="#1B1711" data-fg="#F7F1E4" data-nome="Il mazzo">
+  <div class="occh mono"><b>Il mazzo</b><span>Ecologies of Perception · la mappa del Guide Book</span></div>
+  <h2>Quarantaquattro carte chiare. Sedici carte scure.</h2>
+  <p class="lede">Le chiare sono le parole che il design vorrebbe coltivare: Care, Desire, Play, Enchantment, Bodies, Togetherness, Imagination, Truth. Le scure sono le mediazioni che ci lavorano addosso ogni giorno senza che le abbiamo scelte: surveillance, profiling, deepfake, post-truth, desire engineering, disorientation.</p>
+  <p class="grande">Nella mappa di IED le chiare stanno al centro e le scure ai bordi. Nelle nostre giornate è il contrario.</p>
+</section>
+
+<!-- 3 -->
+<section class="sch" data-c="var(--sen)" data-bg="#E3A63A" data-fg="#1B1711" data-nome="Perché un mazzo">
+  <div class="occh mono"><b>Perché un mazzo</b></div>
+  <h2>Un mazzo non predice niente. Costringe a interpretare.</h2>
+  <p class="lede">I tarocchi funzionano così da cinquecento anni: la carta non sa nulla di te, sei tu che la leggi dentro la situazione che hai davanti. Care pescata davanti a una telecamera dice una cosa. Pescata a un tavolo con quattro persone che non si parlano ne dice un'altra.</p>
+  <p class="lede">Interpretare una carta dentro una situazione è esattamente il processo creativo: un vincolo che arriva da fuori, una cosa che hai davanti, una lettura che è solo tua. In questo corso lo facciamo tante volte, finché diventa un modo di lavorare.</p>
+  <p class="grande">La regola: chi pesca non spiega la carta. La legge.</p>
+</section>
+
+<!-- 4 -->
+<section class="sch" data-c="var(--bod)" data-bg="#F7F1E4" data-fg="#1B1711" data-nome="I cinque arcani">
+  <div class="occh mono"><b>I cinque arcani</b><span>I pilastri del framework, uno per incontro</span></div>
+  <h2>Cinque modi di guardare.</h2>
+  <div class="arcani">
+    <div class="arc" style="--c:var(--sen)"><span class="num">I</span><svg viewBox="0 0 100 60" fill="none" stroke="#fff" stroke-width="2.5"><path d="M5 30 Q50 -10 95 30 Q50 70 5 30Z"/><circle cx="50" cy="30" r="12"/><circle cx="50" cy="30" r="4" fill="#fff"/></svg><b>Sensibilità</b><small>Sensitivity</small><p>Cogliere ciò che sfugge all'informazione: gesti, ritmi, assenze. Il sonno, la noia, l'attesa.</p></div>
+    <div class="arc" style="--c:var(--bod)"><span class="num">II</span><svg viewBox="0 0 100 80" fill="none" stroke="#fff" stroke-width="2.5"><path d="M30 75 V40 Q30 30 38 30 V15 Q38 8 45 8 Q52 8 52 15 V12 Q52 5 59 5 Q66 5 66 12 V18 Q66 11 73 11 Q80 11 80 18 V30 Q80 24 86 24 Q92 24 92 31 V50 Q92 75 70 75Z"/></svg><b>Corpi</b><small>Bodies</small><p>La prima ecologia della percezione. Porosi, relazionali, incompleti.</p></div>
+    <div class="arc" style="--c:var(--des)"><span class="num">III</span><svg viewBox="0 0 100 80" fill="none" stroke="#fff" stroke-width="2.5"><path d="M50 75 Q20 55 25 35 Q30 20 42 25 Q38 10 50 5 Q62 10 58 25 Q70 20 75 35 Q80 55 50 75Z"/><path d="M50 60 Q42 50 50 40 Q58 50 50 60Z"/></svg><b>Desiderio</b><small>Desire</small><p>Quali desideri ci appartengono e quali sono stati prodotti per noi.</p></div>
+    <div class="arc" style="--c:var(--wor)"><span class="num">IV</span><svg viewBox="0 0 100 80" fill="none" stroke="#fff" stroke-width="2.5"><circle cx="50" cy="40" r="32"/><path d="M18 40 H82 M50 8 Q30 40 50 72 Q70 40 50 8"/></svg><b>Costruire mondi</b><small>World-building</small><p>Immaginare alternative ai mondi che abitiamo, e dar loro una lingua.</p></div>
+    <div class="arc" style="--c:var(--tog)"><span class="num">V</span><svg viewBox="0 0 100 80" fill="none" stroke="#fff" stroke-width="2.5"><circle cx="35" cy="40" r="22"/><circle cx="65" cy="40" r="22"/></svg><b>Stare insieme</b><small>Togetherness</small><p>Interdipendenza, cura, riti collettivi, beni comuni. Il lavoro che si fa solo in molti.</p></div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section class="sch" data-c="var(--grigio)" data-bg="#1B1711" data-fg="#F7F1E4" data-nome="Il rovescio">
+  <div class="occh mono"><b>Il rovescio</b><span>Le sedici carte scure</span></div>
+  <h2>Ogni carta scura è una carta chiara vista dall'altra parte.</h2>
+  <p class="lede">Nei tarocchi una carta capovolta si legge al contrario. Qui il lato scuro della mappa è il rovescio del lato chiaro: Truth e post-truth, Play e simulation, Desire e desire engineering. Imparare a vedere il rovescio è metà del corso.</p>
+  <div class="coppie">
+    <div class="cp" style="--c:var(--bod)"><span>Care</span><span>surveillance</span></div>
+    <div class="cp" style="--c:var(--sen)"><span>Truth</span><span>deepfake</span></div>
+    <div class="cp" style="--c:var(--des)"><span>Play</span><span>simulation</span></div>
+    <div class="cp" style="--c:var(--des)"><span>Desire</span><span>desire engineering</span></div>
+    <div class="cp" style="--c:var(--wor)"><span>Imagination</span><span>hallucination</span></div>
+    <div class="cp" style="--c:var(--tog)"><span>Togetherness</span><span>mob / herd</span></div>
+    <div class="cp" style="--c:var(--des)"><span>Identities</span><span>profiling</span></div>
+    <div class="cp" style="--c:var(--wor)"><span>Counter-narratives</span><span>conspiracy</span></div>
+  </div>
+</section>
+
+<!-- 6 -->
+<section class="sch" data-c="var(--wor)" data-bg="#D6E2F7" data-fg="#1B1711" data-nome="Le stese">
+  <div class="occh mono"><b>Le stese</b><span>Come si gioca</span></div>
+  <h2>Quattro modi di mettere le carte sul tavolo.</h2>
+  <div class="stese">
+    <div class="stesa" style="--c:var(--sen)"><b>Il binomio</b><div class="dis"><i class="c"></i><i class="s"></i></div><p>Una chiara e una scura, lontane per costruzione. Inventate una cosa che le tiene insieme. È il binomio fantastico di Rodari.</p></div>
+    <div class="stesa" style="--c:var(--des)"><b>La stesa a tre</b><div class="dis"><i class="c"></i><i class="c"></i><i class="c"></i></div><p>Da dove veniamo, dove siamo, dove potremmo andare. Raccontate la storia che le tiene insieme.</p></div>
+    <div class="stesa" style="--c:var(--wor)"><b>La croce</b><div class="dis"><i></i><i class="c"></i><i></i><i class="c"></i><i class="c" style="background:var(--notte)"></i><i class="c"></i><i></i><i class="s"></i><i></i></div><p>Una al centro, quattro intorno, almeno una scura. È già la forma della stesa finale.</p></div>
+    <div class="stesa" style="--c:var(--tog)"><b>Il memory del rovescio</b><div class="dis"><i></i><i></i><i></i><i class="c"></i><i></i><i class="s"></i></div><p>Trentadue carte coperte, sedici coppie. Trovate il rovescio e dite in una frase perché è la stessa cosa.</p></div>
+  </div>
+</section>
+
+<!-- 7 -->
+<section class="sch" data-c="var(--tog)" data-bg="#F7F1E4" data-fg="#1B1711" data-nome="Le sette tappe">
+  <div class="occh mono"><b>Le sette tappe</b><span>30 ore · via Branca 122 · il 5 dicembre in via Alcamo 11</span></div>
+  <h2>Una stesa per ogni incontro, e ogni volta si esce nel mondo.</h2>
+  <div class="tappe">
+    <div class="tappa" style="--c:var(--sen)"><span class="n">1</span><b>Guardare</b><small>mer 11 nov · 12-15</small><p>Il torneo del mazzo: Taboo, binomio, memory, oracolo. Il processo creativo intero in un pomeriggio.</p></div>
+    <div class="tappa" style="--c:var(--sen)"><span class="n">2</span><b>Sentire</b><small>mer 2 dic · 15:30-18:30</small><p>Una carta sola. Esaurire un luogo in venti minuti, come Perec. Crary, Berger, la meraviglia.</p></div>
+    <div class="tappa" style="--c:var(--des)"><span class="n">3</span><b>Desiderare</b><small>sab 5 dic · 9-14 · via Alcamo</small><p>La deriva per Roma con una carta-regola in tasca, poi la stessa deriva nel feed. Si formano i gruppi.</p></div>
+    <div class="tappa" style="--c:var(--wor)"><span class="n">4</span><b>Immaginare</b><small>mer 9 dic · 12-15</small><p>Stesa a tre. Dieci istruzioni per vedere diversamente, da dare a un altro gruppo. Le Guin, Campagna.</p></div>
+    <div class="tappa" style="--c:var(--bod)"><span class="n">5</span><b>Costruire</b><small>gio 17 dic · 9-15</small><p>Il mercato delle carte: si baratta finché ogni gruppo ha la sua croce. Titolo, cinque carte, domanda. Con Lorenzo la traduzione visiva.</p></div>
+    <div class="tappa" style="--c:var(--tog)"><span class="n">6</span><b>Uscire</b><small>ven 8 gen · 9-15</small><p>Roma a memoria, poi fuori a verificare con la croce in mano. Pomeriggio: revisione collettiva.</p></div>
+    <div class="tappa" style="--c:var(--grigio)"><span class="n">7</span><b>Restituire</b><small>mer 20 gen · 12-16</small><p>La mostra di un'ora: le stese appese, gli oggetti accanto, cinque minuti a gruppo.</p></div>
+  </div>
+</section>
+
+<!-- 8 -->
+<section class="sch" data-c="var(--des)" data-bg="#F7D2E2" data-fg="#1B1711" data-nome="La stesa finale">
+  <div class="occh mono"><b>La stesa finale</b><span>La consegna del 20 gennaio</span></div>
+  <h2>Un A3 con la vostra lettura del mazzo.</h2>
+  <div class="righe">
+    <div class="riga"><div class="k">Il foglio</div><div class="v">PDF interattivo, A3 orizzontale. La parola chiave al centro, le carte accese attorno, le altre spente o tolte. Una fotografia dal mondo. Un titolo e un sottotitolo. I link dentro devono funzionare.</div></div>
+    <div class="riga"><div class="k">La lettura</div><div class="v">300 parole: da dove siete partiti, quali carte avete acceso e perché, quali avete tagliato, la domanda da cui partirà la tesi.</div></div>
+    <div class="riga"><div class="k">Il gruppo</div><div class="v">Tre o quattro persone, una stesa per gruppo. I gruppi si formano il 5 dicembre.</div></div>
+    <div class="riga"><div class="k">Intermedia</div><div class="v">17 dicembre: titolo provvisorio, cinque carte, una domanda.</div></div>
+    <div class="riga"><div class="k">Finale</div><div class="v">20 gennaio, appesa al muro, letta ad alta voce. IED la usa per l'Academic Dissemination 2027. Da lì parte la tesi.</div></div>
+  </div>
+  <a class="btn" href="esempio.html" target="_blank" rel="noopener">Guarda un esempio di stesa finale →</a>
+</section>
+
+<!-- 9 -->
+<section class="sch" data-c="var(--wor)" data-bg="#3F72C4" data-fg="#F7F1E4" data-nome="Tre domande al mazzo">
+  <div class="occh mono"><b>Tre domande al mazzo</b><span>I fili proposti da IED</span></div>
+  <h2>Ogni stesa risponde a una domanda. IED ne propone tre.</h2>
+  <div class="tre">
+    <div class="filo" style="--c:var(--sen)"><small>Thread 01 · Carnival</small><b>Play. Disrupt. Transform.</b><p>Uno spazio di goffaggine, gioia, immaginazione e interdipendenza, in cui la rottura diventa apertura.</p><div class="d">Cosa succede quando il gioco interrompe l'ordine?</div></div>
+    <div class="filo" style="--c:var(--des)"><small>Thread 02 · Common Desires</small><b>What do we want, together?</b><p>Trasformare sentimenti e desideri condivisi in agire collettivo, relazioni, nuovi modi di vivere.</p><div class="d">Quali desideri sono nostri e quali sono stati prodotti per noi?</div></div>
+    <div class="filo" style="--c:var(--tog)"><small>Thread 03 · Undo / Redo</small><b>Break it. Rewire it. Try again.</b><p>Rintracciare i cicli della percezione e i miti ereditati, smontare ciò che ha smesso di funzionare e prototipare altri mondi.</p><div class="d">Cosa abbiamo dovuto smettere di vedere per vedere quello che vediamo adesso?</div></div>
+  </div>
+  <p class="lede" style="font-size:15px;opacity:.85">La vostra domanda può essere una di queste, o un'altra. La scegliete il 5 dicembre.</p>
+</section>
+
+<!-- 10 -->
+<section class="sch" data-c="var(--bod)" data-bg="#FBD8CF" data-fg="#1B1711" data-nome="Le regole">
+  <div class="occh mono"><b>Le regole del tavolo</b></div>
+  <h2>Poche, e valgono per tutti.</h2>
+  <div class="righe">
+    <div class="riga"><div class="k">Presenze</div><div class="v">Registro a ogni incontro. Chi manca a una tappa recupera con il proprio gruppo prima della successiva: le stese si fanno in aula.</div></div>
+    <div class="riga"><div class="k">Materiali</div><div class="v">Dopo ogni incontro la dispensa va su Learn. Il Guide Book lo ricevete oggi, senza gli esempi: la vostra stesa non deve somigliare a quella di nessuno.</div></div>
+    <div class="riga"><div class="k">Il quaderno</div><div class="v">Uno a testa, di carta. Ogni incontro lascia una pagina: la riga di Perec, la foto della deriva, le istruzioni ricevute. A gennaio è la storia del vostro sguardo.</div></div>
+    <div class="riga"><div class="k">Valutazione</div><div class="v">Il percorso si chiude con la stesa e la lettura del 20 gennaio. Come entrano nell'esame di Design 4 lo definiamo con De Falco e la Faculty e ve lo diciamo alla seconda lezione.</div></div>
+  </div>
+</section>
+
+<!-- 11 -->
+<section class="sch" data-c="var(--sen)" data-bg="#E3A63A" data-fg="#1B1711" data-nome="Oggi si gioca">
+  <div class="occh mono"><b>Oggi</b><span>11 novembre · 12:00-15:00 · pausa alle 13:05</span></div>
+  <h2>Il torneo del mazzo. Quattro squadre, cinque giri, punti sulla lavagna.</h2>
+  <p class="lede">Giochiamo perché il gioco è il modo più veloce per trovare la vostra domanda. A gennaio la domanda deve esserci: è quella da cui parte la tesi.</p>
+  <div class="giri">
+    <div class="giro" style="--c:var(--sen)"><small>12:05 · 15'</small><b>Taboo</b><p>Fai indovinare la carta ai tuoi senza dire la parola. Sessanta secondi. Un punto a carta.</p></div>
+    <div class="giro" style="--c:var(--des)"><small>12:20 · 45'</small><b>Il binomio</b><p>Una chiara e una scura. Venticinque minuti per inventare una cosa e disegnarla su un A3. Un minuto per presentarla. Voto della sala.</p></div>
+    <div class="giro" style="--c:var(--tog)"><small>13:35 · 20'</small><b>Memory del rovescio</b><p>Trovate la coppia e dite in una frase perché è la stessa cosa. Le altre squadre possono contestare.</p></div>
+    <div class="giro" style="--c:var(--wor)"><small>13:55 · 25'</small><b>L'oracolo</b><p>Stesa a tre, poi un libro aperto a caso. La frase trovata, letta con le carte, è una profezia per Roma. Tono da veggente obbligatorio.</p></div>
+    <div class="giro" style="--c:var(--bod)"><small>14:20 · 10'</small><b>La carta da portare a casa</b><p>Ognuno gira una carta e la fotografa. Compito per il 2 dicembre: una fotografia di una cosa a Roma che nessuno sta guardando, e che c'entra con la carta.</p></div>
+  </div>
+  <a class="btn" id="al-tavolo" href="tavolo.html" target="_blank" rel="noopener">Apri il tavolo da gioco →</a>
+</section>
+
+<!-- 12 -->
+<section class="sch" data-c="var(--tog)" data-bg="#D3EEDF" data-fg="#1B1711" data-nome="I libri">
+  <div class="occh mono"><b>I libri</b><span>Per leggere, e per l'oracolo</span></div>
+  <h2>Si legge poco e bene. Si apre a caso spesso.</h2>
+  <p class="lede"><b>Sensibilità:</b> Crary, 24/7 · Berger, Questione di sguardi · El-Wardany, Il libro del sonno · Gancitano e Colamedici, Botanica della meraviglia.</p>
+  <p class="lede"><b>Corpi:</b> Haraway, Chthulucene · Tripaldi, Corpi ambigui · Pecere, Il dio che danza · Sicart, Perché giochiamo.</p>
+  <p class="lede"><b>Desiderio:</b> Fisher, Realismo capitalista · Debord, La società dello spettacolo · Wark, Raving.</p>
+  <p class="lede"><b>Costruire mondi:</b> Le Guin, La teoria narrativa del sacchetto della spesa · Campagna, Altrimondi · Morton, Iperoggetti.</p>
+  <p class="lede"><b>Stare insieme:</b> Bridle, Modi d'essere · Berardi, E: la congiunzione · Ahmed, La politica culturale delle emozioni.</p>
+</section>
+
+<div id="nav"><button class="freccia" id="prev" type="button" aria-label="Indietro">←</button><div class="dove" id="dove"></div><button class="freccia" id="next" type="button" aria-label="Avanti">→</button></div>
+<div id="indice" aria-hidden="true"><button class="chip mono" id="chiudi-indice" type="button" style="position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);right:16px;color:var(--carta);background:rgba(255,255,255,.12)">chiudi</button><h2>Indice</h2><ol id="lista"></ol></div>
+
+<script>
+(function(){
+  const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+  const S=$$('.sch');let i=0;const barra=$('#barra'),lista=$('#lista');
+  S.forEach((s,k)=>{const b=document.createElement('i');b.style.setProperty('--c',s.dataset.c);b.title=s.dataset.nome;b.addEventListener('click',()=>vai(k));barra.appendChild(b);
+    const li=document.createElement('li');li.innerHTML=`<button type="button"><i style="--c:${s.dataset.c}"></i><span>${k+1}. ${s.dataset.nome}</span></button>`;li.querySelector('button').addEventListener('click',()=>{indice(false);vai(k)});lista.appendChild(li)});
+  function vai(n){i=Math.max(0,Math.min(S.length-1,n));S.forEach((s,k)=>{s.classList.toggle('ora',k===i);s.classList.toggle('via',k<i)});const s=S[i];document.body.style.background=s.dataset.bg;document.body.style.color=s.dataset.fg;document.documentElement.style.setProperty('--bg',s.dataset.bg);document.documentElement.style.setProperty('--fg',s.dataset.fg);[...barra.children].forEach((b,k)=>{b.classList.toggle('ora',k===i);b.classList.toggle('fatto',k<i)});$('#dove').innerHTML=`${i+1} / ${S.length}<br>${s.dataset.nome}`;$('#prev').disabled=i===0;$('#next').disabled=i===S.length-1}
+  $('#prev').addEventListener('click',()=>vai(i-1));$('#next').addEventListener('click',()=>vai(i+1));
+  function indice(on){const x=$('#indice');x.classList.toggle('on',on);x.setAttribute('aria-hidden',!on)}
+  $('#apri-indice').addEventListener('click',()=>indice(true));$('#chiudi-indice').addEventListener('click',()=>indice(false));
+  document.addEventListener('keydown',e=>{if(e.metaKey||e.ctrlKey||e.altKey)return;const k=e.key;if(k==='i'||k==='I'){indice(!$('#indice').classList.contains('on'));return}if($('#indice').classList.contains('on')){if(k==='Escape')indice(false);return}if(k==='ArrowRight'||k==='PageDown'||k===' '){e.preventDefault();vai(i+1)}if(k==='ArrowLeft'||k==='PageUp'){e.preventDefault();vai(i-1)}if(k==='f'||k==='F'){try{document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}catch(err){}}});
+  // il ventaglio della soglia: sedici carte, quattro scure
+  const v=$('.ventaglio');for(let k=0;k<16;k++){const c=document.createElement('i');c.className='k'+([3,7,11,14].includes(k)?' s':'');c.style.setProperty('--r',(-30+k*4)+'deg');c.style.animationDelay=(.3+k*.05)+'s';c.style.zIndex=k;v.appendChild(c)}
+  vai(0);
+})();
+</script>
+
+</body>
+</html>
