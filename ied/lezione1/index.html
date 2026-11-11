@@ -14,7 +14,13 @@ header .mono{opacity:.65;margin-bottom:8px}
 h1{font-family:Marcellus,serif;font-weight:400;font-size:clamp(34px,5vw,72px);line-height:1.02}
 .q{font-size:clamp(18px,2.1vw,28px);line-height:1.3;max-width:34em;margin-top:12px}
 .qr{text-align:center;background:#fff;padding:12px;border-radius:14px;box-shadow:0 10px 30px -18px rgba(0,0,0,.5)}
-.qr #qr{width:150px;height:150px}
+.qr #qr{width:260px;height:260px}
+.qr #qr img,.qr #qr canvas{width:260px!important;height:260px!important}
+.qr{cursor:pointer}
+#grande{position:fixed;inset:0;background:rgba(247,241,228,.97);z-index:50;display:none;flex-direction:column;align-items:center;justify-content:center;gap:20px;cursor:pointer}
+#grande.on{display:flex}
+#grande #qr2 img,#grande #qr2 canvas{width:min(70vh,80vw)!important;height:min(70vh,80vw)!important}
+#grande .mono{font-size:clamp(14px,2vw,24px);opacity:.85}
 .qr .mono{opacity:.8;margin-top:8px;font-size:10px}
 main{position:relative;overflow:auto;padding:10px clamp(18px,4vw,48px)}
 .muro{display:flex;flex-wrap:wrap;gap:10px;align-content:flex-start}
@@ -44,9 +50,10 @@ footer .sx{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 <div class="bar"></div>
 <header>
   <div><div class="mono" id="occh"></div><h1 id="tit"></h1><p class="q" id="q"></p></div>
-  <div class="qr"><div id="qr"></div><div class="mono">Scrivete qui<br>mauragancitano.com/ied/lezione1/tu.html</div></div>
+  <div class="qr"><div id="qr"></div><div class="mono">Tocca per ingrandire<br>mauragancitano.com/ied/lezione1/tu.html</div></div>
 </header>
 <main id="main"></main>
+<div id="grande"><div id="qr2"></div><div class="mono">mauragancitano.com/ied/lezione1/tu.html</div></div>
 <footer>
   <div class="sx"><button class="btn v" id="prev" type="button">←</button><button class="btn" id="next" type="button">Avanti →</button><div class="passi" id="passi"></div><span class="mono" id="n"></span></div>
   <div class="sx"><span class="timer" id="timer"></span><button class="btn v" id="tbtn" type="button" hidden>Avvia</button><a class="btn v" href="../tavolo.html" target="_blank">Tavolo</a><a class="btn v" href="../" target="_blank">Il corso</a></div>
@@ -59,7 +66,9 @@ footer .sx{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
   const COL=['var(--sen)','var(--bod)','var(--des)','var(--wor)','var(--tog)'];
   const R={};PASSI.forEach(p=>R[p.id]=[]);const visti=new Set();let i=0;
   try{i=Math.max(0,Math.min(PASSI.length-1,+localStorage.getItem('l1-i')||0))}catch(e){}
-  try{new QRCode($('#qr'),{text:'https://mauragancitano.com/ied/lezione1/tu.html',width:150,height:150,colorDark:'#1B1711',colorLight:'#ffffff'})}catch(e){}
+  try{new QRCode($('#qr'),{text:'https://mauragancitano.com/ied/lezione1/tu.html',width:520,height:520,colorDark:'#1B1711',colorLight:'#ffffff'})}catch(e){}
+  try{new QRCode($('#qr2'),{text:'https://mauragancitano.com/ied/lezione1/tu.html',width:900,height:900,colorDark:'#1B1711',colorLight:'#F7F1E4'})}catch(e){}
+  $('.qr').onclick=()=>$('#grande').classList.add('on');$('#grande').onclick=()=>$('#grande').classList.remove('on');
   const pas=$('#passi');PASSI.forEach((p,k)=>{const b=document.createElement('i');b.title=p.tit;b.onclick=()=>vai(k);pas.appendChild(b)});
   let pescati={};
   function pesca(n,da){const a=da.slice(),o=[];while(o.length<n){o.push(a.splice(Math.floor(Math.random()*a.length),1)[0])}return o}
@@ -87,7 +96,7 @@ footer .sx{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
   function setTimer(m){clearInterval(tid);tid=null;tot=resta=m*60;$('#tbtn').hidden=!m;$('#tbtn').textContent='Avvia';$('#timer').textContent=m?fmt(resta):''}
   $('#tbtn').onclick=()=>{if(tid){clearInterval(tid);tid=null;$('#tbtn').textContent='Riprendi';return}tid=setInterval(()=>{resta--;$('#timer').textContent=fmt(Math.max(0,resta));if(resta<=0){clearInterval(tid);tid=null;$('#tbtn').textContent='Fine'}},1000);$('#tbtn').textContent='Ferma'};
   $('#prev').onclick=()=>vai(i-1);$('#next').onclick=()=>vai(i+1);
-  document.addEventListener('keydown',e=>{if(e.target.closest('input,textarea'))return;if(e.key==='ArrowRight')vai(i+1);if(e.key==='ArrowLeft')vai(i-1);if(e.key===' '&&!$('#tbtn').hidden){e.preventDefault();$('#tbtn').click()}if(e.key==='f'||e.key==='F'){try{document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}catch(x){}}});
+  document.addEventListener('keydown',e=>{if(e.target.closest('input,textarea'))return;if(e.key==='ArrowRight')vai(i+1);if(e.key==='ArrowLeft')vai(i-1);if(e.key===' '&&!$('#tbtn').hidden){e.preventDefault();$('#tbtn').click()}if(e.key==='q'||e.key==='Q')$('#grande').classList.toggle('on');if(e.key==='f'||e.key==='F'){try{document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}catch(x){}}});
   ascolta((o,m)=>{if(visti.has(m.id))return;visti.add(m.id);if((o.k==='r'||o.k==='c')&&R[o.s]){R[o.s].push({t:String(o.t||''),g:String(o.g||''),claude:o.k==='c'});if(o.s===PASSI[i].id)disegna()}});
   vai(i);
 })();
