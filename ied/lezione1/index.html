@@ -98,6 +98,6 @@ footer .sx{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
   $('#prev').onclick=()=>vai(i-1);$('#next').onclick=()=>vai(i+1);
   document.addEventListener('keydown',e=>{if(e.target.closest('input,textarea'))return;if(e.key==='ArrowRight')vai(i+1);if(e.key==='ArrowLeft')vai(i-1);if(e.key===' '&&!$('#tbtn').hidden){e.preventDefault();$('#tbtn').click()}if(e.key==='q'||e.key==='Q')$('#grande').classList.toggle('on');if(e.key==='f'||e.key==='F'){try{document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}catch(x){}}});
   ascolta((o,m)=>{if(visti.has(m.id))return;visti.add(m.id);if((o.k==='r'||o.k==='c')&&R[o.s]){R[o.s].push({t:String(o.t||''),g:String(o.g||''),claude:o.k==='c'});if(o.s===PASSI[i].id)disegna()}});
-  vai(i);
+  vai(i,false);
 })();
 </script></body></html>
