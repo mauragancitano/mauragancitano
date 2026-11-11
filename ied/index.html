@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Che cosa stiamo guardando</title>
-<meta name="description" content="Il corso Design 4 di Maura Gancitano allo IED Roma, 2026/27: i brief, il mazzo delle sessanta parole, le sette tappe, cosa si consegna.">
-<meta property="og:title" content="Che cosa stiamo guardando"><meta property="og:description" content="Il corso Design 4 di Maura Gancitano allo IED Roma, 2026/27: i brief, il mazzo delle sessanta parole, le sette tappe, cosa si consegna."><meta property="og:type" content="website">
+<meta name="description" content="Il corso Design 4 di Maura Gancitano allo IED Roma, 2026/27: i brief, le sette tappe lezione per lezione, gli strumenti, cosa si consegna.">
+<meta property="og:title" content="Che cosa stiamo guardando"><meta property="og:description" content="Il corso Design 4 di Maura Gancitano allo IED Roma, 2026/27: i brief, le sette tappe lezione per lezione, gli strumenti, cosa si consegna."><meta property="og:type" content="website">
 <meta name="robots" content="noindex">
 <style>[hidden]{display:none!important}body{margin:0}</style>
 </head>
@@ -45,6 +45,9 @@ section .lede{font-size:clamp(16px,1.9vw,20px);max-width:36em;color:#3a3630}
 dt{font:500 10px/1.8 "DM Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--grigio)}
 dd{color:#2a2622}
 dd b{font-weight:600}
+.passi{padding-left:18px;display:flex;flex-direction:column;gap:4px}
+.passi li{color:#2a2622}
+.tappa dl{grid-template-columns:130px 1fr}
 .carte{display:flex;gap:6px;margin:18px 0 6px;flex-wrap:wrap}
 .carte i{width:38px;aspect-ratio:5/7;border-radius:5px;border:1.5px solid rgba(27,23,17,.4);background:#fff;background-image:repeating-linear-gradient(45deg,transparent 0 5px,rgba(27,23,17,.08) 5px 6px)}
 .carte i.s{background:var(--ink);border-color:#000;background-image:repeating-linear-gradient(45deg,transparent 0 5px,rgba(255,255,255,.1) 5px 6px)}
@@ -72,7 +75,7 @@ footer{padding-block:40px;color:var(--grigio);font-size:13px}
   <div class="mono">IED Roma · Design 4 · a.a. 2026/27 · Maura Gancitano</div>
   <h1>Che cosa stiamo guardando</h1>
   <p>Da qui a febbraio dovete fare la ricerca per la vostra tesi e portare un book all'esame. In questi sette incontri impariamo il metodo per farla: trasformare il brief in una domanda vostra, fare interviste e questionari ai coetanei, leggere quello che trovate, scrivere l'indice e l'abstract del book. A mano, in aula, con la vostra testa.</p>
-  <p>Lo facciamo giocando con le sessanta parole che IED vi ha dato per quest'anno, perché il gioco è il modo più veloce per guardare il vostro brief da un punto che non avevate previsto.</p>
+  <p>Ogni incontro ha due parti. Una creativa, con le sessanta parole di IED trasformate in un mazzo di carte: serve a guardare il brief da un punto che non avevate previsto, perché è lì che si trova l'insight. Una pratica: ogni volta uno strumento concreto per fare la ricerca e scrivere il book, dalla domanda all'indice all'abstract.</p>
   <nav class="salta"><a href="#brief">I brief</a><a href="#mazzo">Il mazzo</a><a href="#tappe">Le sette tappe</a><a href="#consegna">Cosa consegnate</a><a href="#regole">Le cose pratiche</a></nav>
 </header>
 
@@ -111,24 +114,69 @@ footer{padding-block:40px;color:var(--grigio);font-size:13px}
 </section>
 
 <section class="frame" id="mazzo">
-  <h2>Il mazzo</h2>
-  <p class="lede">Le sessanta parole di «Ecologies of Perception» sono un mazzo di carte: quarantaquattro chiare, le cose che il design vorrebbe coltivare, e sedici scure, le cose che ci succedono addosso senza che le scegliamo. Ogni carta scura è il rovescio di una chiara: Truth e post-truth, Care e surveillance, Play e simulation.</p>
-  <div class="carte" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i></div>
-  <p class="lede">Ogni incontro si pesca e si gioca: il binomio (una chiara e una scura da tenere insieme), la stesa a tre (da dove viene il problema, dove sta, dove potrebbe andare), la croce (il vostro brief al centro e quattro carte intorno: da dove lo guardate), il memory del rovescio. Chi pesca non spiega la carta: la legge dentro la situazione che ha davanti.</p>
+  <h2>Il mazzo: uno strumento di lavoro</h2>
+  <p class="lede">IED ha dato a tutte le classi sessanta parole chiave per l'anno (Care, Desire, Play, Bodies, Truth, e sul bordo surveillance, profiling, deepfake, desire engineering). Noi le abbiamo trasformate in un mazzo di sessanta carte, quarantaquattro chiare e sedici scure, e lo usiamo per tre cose precise:</p>
+  <div class="due" style="grid-template-columns:repeat(3,1fr)">
+    <div class="box" style="--c:var(--sen)"><h3>Spostare lo sguardo</h3><p>Pescare una carta e guardare il brief da lì. Save the Children visto da «Care» è la campagna che farebbero tutti; visto da «Awkward» o da «Multiple temporalities» è un'idea che nessuno ha ancora fatto. Serve a trovare l'insight.</p></div>
+    <div class="box" style="--c:var(--wor)"><h3>Dare una struttura</h3><p>Con la croce (il brief al centro, quattro carte intorno) decidete i quattro punti di vista della vostra ricerca. Diventano i capitoli del book.</p></div>
+    <div class="box" style="--c:var(--grigio)"><h3>Vedere il rovescio</h3><p>Ogni carta scura è il rovescio di una chiara: Truth e post-truth, Care e surveillance. I vostri brief stanno tutti e due su questo confine: informazione e disinformazione, protezione e controllo.</p></div>
+  </div>
   <a class="btn" href="tavolo.html">Apri il tavolo da gioco →</a>
 </section>
 
 <section class="frame" id="tappe">
-  <h2>Le sette tappe</h2>
-  <p class="lede">Un verbo per incontro. Ogni volta un gioco con le carte, un'uscita nel mondo e uno strumento per la ricerca.</p>
+  <h2>Le sette tappe, lezione per lezione</h2>
+  <p class="lede">Per ogni incontro: cosa facciamo in aula, nell'ordine; lo strumento creativo che vi do e a cosa serve; lo strumento pratico per la ricerca e come si usa; cosa portate o consegnate.</p>
   <div class="tappe">
-    <div class="tappa" style="--c:var(--sen)"><div class="n">1</div><div><h3>Guardare</h3><div class="quando">mercoledì 11 novembre · 12-15 · via Branca 122</div><dl><dt>Giochiamo</dt><dd>Il torneo del mazzo, a squadre di tesi: Taboo, binomio fantastico, memory del rovescio, oracolo.</dd><dt>Impariamo</dt><dd>Cosa avete fatto finora, detto da voi. Il processo creativo intero in un pomeriggio.</dd><dt>Compito</dt><dd>Una fotografia a testa di una cosa che nessuno guarda nel territorio del vostro brief, con una riga. Un quaderno di carta per la prossima volta.</dd></dl></div></div>
-    <div class="tappa" style="--c:var(--sen)"><div class="n">2</div><div><h3>Sentire</h3><div class="quando">mercoledì 2 dicembre · 15:30-18:30 · via Branca 122</div><dl><dt>Giochiamo</dt><dd>Una carta per gruppo e venti minuti a scrivere tutto quello che succede in un luogo del vostro brief: una farmacia, il piano di evacuazione di IED.</dd><dt>Impariamo</dt><dd><b>Dalla domanda del committente alla vostra.</b> Cosa chiede il brief, cosa non dice, cosa volete scoprire voi. La domanda in una frase, a mano.</dd><dt>Compito</dt><dd>Cinque interviste lampo a coetanei, una domanda sola.</dd></dl></div></div>
-    <div class="tappa" style="--c:var(--des)"><div class="n">3</div><div><h3>Desiderare</h3><div class="quando">sabato 5 dicembre · 9-14 · sede di via Alcamo 11</div><dl><dt>Giochiamo</dt><dd>La deriva: un'ora a piedi per il Pigneto con una carta scura come regola, poi la stessa deriva dentro il feed del telefono.</dd><dt>Impariamo</dt><dd><b>Fare ricerca.</b> Osservare e prendere appunti, l'intervista in cinque domande, il questionario ai coetanei, come si legge un libro in un'ora. Ogni gruppo scrive il suo questionario.</dd><dt>Compito</dt><dd>Trenta questionari o dieci interviste, e cinque fonti vere, entro il 17.</dd></dl></div></div>
-    <div class="tappa" style="--c:var(--wor)"><div class="n">4</div><div><h3>Immaginare</h3><div class="quando">mercoledì 9 dicembre · 12-15 · via Branca 122</div><dl><dt>Giochiamo</dt><dd>La stesa a tre sul brief: da dove viene il problema, dove sta, dove potrebbe andare. Dieci istruzioni per vedere diversamente, da dare all'altro gruppo.</dd><dt>Impariamo</dt><dd><b>L'indice del book di ricerca:</b> scenario, target, ostacoli e falsi miti, casi studio, ricerca sui coetanei, insight, concept. Prima versione a mano.</dd><dt>Consegna</dt><dd>La vostra domanda e l'indice.</dd></dl></div></div>
-    <div class="tappa" style="--c:var(--bod)"><div class="n">5</div><div><h3>Costruire</h3><div class="quando">giovedì 17 dicembre · 9-15 · via Branca 122</div><dl><dt>Giochiamo</dt><dd>Il mercato delle carte: si baratta finché ogni gruppo ha la sua croce, il brief al centro e quattro carte intorno.</dd><dt>Impariamo</dt><dd><b>Leggere i dati</b> dei vostri questionari e trovare l'insight. <b>Scrivere:</b> il paragrafo, la citazione, l'abstract di 300 parole, in aula.</dd><dt>Consegna</dt><dd>La croce e l'abstract.</dd></dl></div></div>
-    <div class="tappa" style="--c:var(--tog)"><div class="n">6</div><div><h3>Uscire</h3><div class="quando">venerdì 8 gennaio · 9-15 · via Branca 122 e città</div><dl><dt>Giochiamo</dt><dd>Roma disegnata a memoria, poi due ore fuori con la croce in mano: un'intervista a un farmacista, a un insegnante.</dd><dt>Impariamo</dt><dd><b>Rivedere:</b> seconda versione dell'indice, lettura incrociata tra gruppi, come si cita, la bibliografia.</dd><dt>Dopo</dt><dd>L'A3 definitivo e l'abstract.</dd></dl></div></div>
-    <div class="tappa" style="--c:var(--grigio)"><div class="n">7</div><div><h3>Restituire</h3><div class="quando">mercoledì 20 gennaio · 12-16 · via Branca 122</div><dl><dt>Facciamo</dt><dd>La mostra: gli A3 appesi con tutto quello che avete raccolto. Cinque minuti a gruppo, la prova generale di febbraio.</dd><dt>Impariamo</dt><dd><b>Dire la ricerca in cinque minuti.</b> E dieci minuti di scrittura: cosa vedete adesso che l'11 novembre non vedevate.</dd></dl></div></div>
+<div class="tappa" style="--c:var(--sen)"><div class="n">1</div><div><h3>Guardare</h3><div class="quando">mercoledì 11 novembre · 12-15 · via Branca 122</div>
+      <dl>
+        <dt>In aula</dt><dd><ol class="passi"><li>Ogni gruppo racconta in tre minuti cosa gli è stato chiesto, cosa ha già fatto, cosa gli manca.</li><li>Torneo a squadre con il mazzo: Taboo sulle parole, binomio fantastico (due carte lontane, inventare in 25 minuti una cosa che le tiene insieme e disegnarla su un A3), memory del rovescio, oracolo con tre carte e un libro aperto a caso.</li><li>Dopo la pausa: il corso spiegato, le date, cosa si consegna, le regole.</li></ol></dd>
+        <dt>Strumento creativo</dt><dd><b>Il binomio fantastico</b> di Rodari: due parole lontane obbligano a inventare. È il processo creativo intero in un pomeriggio: vincolo, idea, disegno, racconto agli altri.</dd>
+        <dt>Strumento pratico</dt><dd><b>Il brief in una frase.</b> Scrivere in alto sul foglio che cosa vi chiede il committente, con parole vostre. Se non ci sta in una frase, non l'avete ancora capito.</dd>
+        <dt>Compito</dt><dd>Una fotografia a testa di una cosa che nessuno guarda nel luogo del vostro brief (una farmacia, una scuola), con una riga scritta. Portate un quaderno di carta.</dd>
+      </dl></div></div>
+<div class="tappa" style="--c:var(--sen)"><div class="n">2</div><div><h3>Sentire</h3><div class="quando">mercoledì 2 dicembre · 15:30-18:30 · via Branca 122</div>
+      <dl>
+        <dt>In aula</dt><dd><ol class="passi"><li>Guardiamo le vostre fotografie proiettate, in silenzio.</li><li>Ogni gruppo pesca una carta e va venti minuti in un luogo del proprio brief: una farmacia qui vicino, oppure i corridoi e il piano di evacuazione di IED. Scrive tutto quello che vede e succede, senza scegliere.</li><li>Al rientro ognuno sottolinea una sola riga e la legge.</li><li>Lezione breve: come funziona l'attenzione, perché smettiamo di vedere le cose che conosciamo (Crary, Berger).</li><li>Lavoro sul brief con lo strumento pratico, scritto a mano e letto ad alta voce.</li></ol></dd>
+        <dt>Strumento creativo</dt><dd><b>La scrittura di osservazione</b> (da Perec): venti minuti a scrivere tutto quello che passa davanti agli occhi. Fa vedere quello che il brief dà per scontato: cosa succede davvero in una farmacia, chi legge il cartello delle uscite.</dd>
+        <dt>Strumento pratico</dt><dd><b>Dal brief alla domanda</b>, in tre righe: cosa chiede il committente; cosa il brief non dice; cosa volete scoprire voi. Poi la vostra domanda di ricerca in una frase, con un chi, un dove e un quando. Una domanda a cui si possa rispondere con una ricerca, non uno slogan.</dd>
+        <dt>Compito</dt><dd>Cinque interviste lampo a coetanei, una domanda sola («cosa sai dei cinque giorni?», «quando hai pensato l'ultima volta a un terremoto?»). Risposte trascritte sul quaderno.</dd>
+      </dl></div></div>
+<div class="tappa" style="--c:var(--des)"><div class="n">3</div><div><h3>Desiderare</h3><div class="quando">sabato 5 dicembre · 9-14 · sede di via Alcamo 11</div>
+      <dl>
+        <dt>In aula</dt><dd><ol class="passi"><li>Un'ora a piedi per il quartiere, in coppia, con una regola pescata dal mazzo scuro («gira dove vedi una telecamera», «entra in ogni farmacia e non comprare niente»). Telefono solo per fotografare.</li><li>Al rientro, venti minuti: la stessa passeggiata dentro il feed. Cercate il vostro tema e segnate cosa vi mostra l'algoritmo e cosa no.</li><li>Lezione breve: il corpo che guarda e il desiderio che ci viene costruito (Debord, Fisher).</li><li>Laboratorio: ogni gruppo scrive il proprio questionario e la traccia per le interviste.</li></ol></dd>
+        <dt>Strumento creativo</dt><dd><b>La deriva</b> dei situazionisti: camminare con una regola assurda fa vedere il quartiere che non si guarda più. Serve a raccogliere osservazioni vere sul territorio del brief, invece di immaginarlo da casa.</dd>
+        <dt>Strumento pratico</dt><dd><b>Il kit della ricerca sul campo:</b> come si prendono appunti di osservazione; l'intervista in cinque domande (aperte, mai suggerite, con il consenso di chi risponde); il questionario in dieci domande ai coetanei; come si legge un libro in un'ora (indice, introduzione, un capitolo, tre citazioni).</dd>
+        <dt>Compito</dt><dd>Entro il 17 dicembre: trenta questionari compilati o dieci interviste, e cinque fonti vere (libri, ricerche, articoli) con una riga su ciascuna.</dd>
+      </dl></div></div>
+<div class="tappa" style="--c:var(--wor)"><div class="n">4</div><div><h3>Immaginare</h3><div class="quando">mercoledì 9 dicembre · 12-15 · via Branca 122</div>
+      <dl>
+        <dt>In aula</dt><dd><ol class="passi"><li>Ogni gruppo pesca tre carte e racconta in tre minuti la storia del proprio problema: da dove viene, dove sta oggi, dove potrebbe andare. Per ellaOne dalla pillola con ricetta al banco libero; per Save the Children dall'Aquila alle scuole di oggi.</li><li>Ogni gruppo scrive dieci istruzioni per guardare il proprio tema in modo diverso e le consegna all'altro gruppo, che ne eseguirà tre entro il 17.</li><li>Lezione breve: immaginare alternative è un lavoro, non un'ispirazione (Le Guin, Campagna).</li><li>Laboratorio: l'indice del book, scritto a mano.</li></ol></dd>
+        <dt>Strumento creativo</dt><dd><b>Le istruzioni</b> alla maniera di Yoko Ono: frasi brevi all'imperativo che fanno fare un'esperienza a qualcun altro. Allenano a pensare per il lettore, che è quello che fa una campagna.</dd>
+        <dt>Strumento pratico</dt><dd><b>L'indice del book di ricerca</b>, capitolo per capitolo: scenario; a chi parliamo; ostacoli e falsi miti; casi studio; la ricerca sui coetanei; l'insight; verso il concept. Vi mostro indici di tesi vere e ogni gruppo scrive il suo, prima versione.</dd>
+        <dt>Consegna</dt><dd>La vostra domanda di ricerca e la prima versione dell'indice.</dd>
+      </dl></div></div>
+<div class="tappa" style="--c:var(--bod)"><div class="n">5</div><div><h3>Costruire</h3><div class="quando">giovedì 17 dicembre · 9-15 · via Branca 122</div>
+      <dl>
+        <dt>In aula</dt><dd><ol class="passi"><li>Mattina: questionari e interviste sul tavolo. Contiamo, leggiamo, cerchiamo lo scarto tra quello che i coetanei credono di sapere e quello che sanno. Quello scarto è l'insight.</li><li>Il mercato delle carte: ogni gruppo ha dieci carte e deve arrivare a quattro, barattando con gli altri gruppi e spiegando a voce perché vuole quella carta. Le quattro carte intorno al brief sono i quattro punti di vista del book.</li><li>Pomeriggio: si scrive. L'abstract di trecento parole, in aula, a mano.</li><li>Lezione breve: fare insieme, la responsabilità condivisa (il partner in ellaOne, i ragazzi ambasciatori in Save the Children).</li></ol></dd>
+        <dt>Strumento creativo</dt><dd><b>La croce:</b> il brief al centro e quattro carte intorno. Costringe a scegliere quattro sguardi e a tagliare tutto il resto. Diventa la mappa sull'A3.</dd>
+        <dt>Strumento pratico</dt><dd><b>Leggere i dati:</b> contare le risposte, citare le frasi degli intervistati, scrivere l'insight in una riga. <b>Scrivere:</b> come si costruisce un paragrafo (una cosa sola per paragrafo), come si cita una fonte, come si scrive un abstract di trecento parole. <b>La regola sull'IA:</b> si usa per farsi fare domande e obiezioni, mai per scrivere; ogni uso si dichiara.</dd>
+        <dt>Consegna</dt><dd>La croce (le quattro carte scelte) e l'abstract.</dd>
+      </dl></div></div>
+<div class="tappa" style="--c:var(--tog)"><div class="n">6</div><div><h3>Uscire</h3><div class="quando">venerdì 8 gennaio · 9-15 · via Branca 122 e città</div>
+      <dl>
+        <dt>In aula</dt><dd><ol class="passi"><li>Dieci minuti: disegnate Roma a memoria. Quello che manca dal disegno è quello che nessuno guarda.</li><li>Due ore fuori con la vostra croce stampata: una fotografia per ogni carta e un'intervista a chi il brief chiama target secondario, un farmacista per ellaOne, un insegnante per Save the Children.</li><li>Pomeriggio: ogni gruppo appende la bozza dell'A3 e la presenta in cinque minuti. La classe fa due domande e propone un taglio.</li><li>Lezione breve: il noi che include chi non parla (Bridle, Haraway).</li></ol></dd>
+        <dt>Strumento creativo</dt><dd><b>La mappa mentale</b> di Lynch: disegnare un luogo a memoria mostra cosa la città ci ha insegnato a vedere e cosa no. Serve a verificare sul campo quello che avete scritto a tavolino.</dd>
+        <dt>Strumento pratico</dt><dd><b>La revisione:</b> seconda versione dell'indice dopo i dati; lettura incrociata tra gruppi con una griglia di tre domande; come si cita in nota e in bibliografia; cosa si taglia e perché.</dd>
+        <dt>Dopo</dt><dd>Entro il 20 gennaio: l'A3 definitivo e l'abstract corretto.</dd>
+      </dl></div></div>
+<div class="tappa" style="--c:var(--grigio)"><div class="n">7</div><div><h3>Restituire</h3><div class="quando">mercoledì 20 gennaio · 12-16 · via Branca 122</div>
+      <dl>
+        <dt>In aula</dt><dd><ol class="passi"><li>Gli A3 stampati appesi al muro, con accanto i materiali raccolti: fotografie, questionari, righe di osservazione, istruzioni.</li><li>Cinque minuti a gruppo, in piedi, davanti alla propria mappa: è la prova generale della presentazione di febbraio.</li><li>Dieci minuti di scrittura a testa: cosa vedete adesso che l'11 novembre non vedevate.</li><li>Segnalo i tre lavori migliori alla Faculty, come chiede IED.</li></ol></dd>
+        <dt>Strumento creativo</dt><dd><b>La mostra:</b> presentare in piedi davanti a un foglio appeso, con gli oggetti accanto, è diverso da presentare slide. Si impara a difendere una ricerca a voce.</dd>
+        <dt>Strumento pratico</dt><dd><b>Dire la ricerca in cinque minuti:</b> la domanda, da dove l'avete guardata, cosa avete trovato, cosa proponete. Una struttura che userete a febbraio e alla discussione finale.</dd>
+        <dt>Dopo</dt><dd>Niente. Da febbraio si lavora con i relatori sul concept e sul progetto.</dd>
+      </dl></div></div>
   </div>
 </section>
 
