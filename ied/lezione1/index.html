@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Lezione 1 · Guardare</title><meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Familjen+Grotesk:wght@400;500;600&family=DM+Mono:wght@500&display=swap">
+<style>
+:root{--carta:#F7F1E4;--ink:#1B1711;--sen:#E3A63A;--bod:#E25A3F;--des:#C8457F;--wor:#3F72C4;--tog:#3EA377;color-scheme:light}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--carta);color:var(--ink);font-family:"Familjen Grotesk",system-ui,sans-serif;overflow:hidden;display:grid;grid-template-rows:auto 1fr auto}
+.bar{height:6px;background:linear-gradient(90deg,var(--sen),var(--bod),var(--des),var(--wor),var(--tog))}
+.mono{font:500 11px/1.4 "DM Mono",monospace;letter-spacing:.14em;text-transform:uppercase}
+header{display:grid;grid-template-columns:1fr auto;gap:24px;padding:22px clamp(18px,4vw,48px) 10px;align-items:start}
+header .mono{opacity:.65;margin-bottom:8px}
+h1{font-family:Marcellus,serif;font-weight:400;font-size:clamp(34px,5vw,72px);line-height:1.02}
+.q{font-size:clamp(18px,2.1vw,28px);line-height:1.3;max-width:34em;margin-top:12px}
+.qr{text-align:center;background:#fff;padding:12px;border-radius:14px;box-shadow:0 10px 30px -18px rgba(0,0,0,.5)}
+.qr #qr{width:150px;height:150px}
+.qr .mono{opacity:.8;margin-top:8px;font-size:10px}
+main{position:relative;overflow:auto;padding:10px clamp(18px,4vw,48px)}
+.muro{display:flex;flex-wrap:wrap;gap:10px;align-content:flex-start}
+.foglio{background:#fff;border-radius:12px;padding:12px 14px;max-width:420px;font-size:clamp(15px,1.4vw,20px);line-height:1.35;border-top:5px solid var(--c);box-shadow:0 8px 20px -14px rgba(0,0,0,.5);animation:in .6s cubic-bezier(.2,.8,.2,1.2) both}
+.foglio small{display:block;font:500 10px "DM Mono",monospace;letter-spacing:.12em;text-transform:uppercase;opacity:.55;margin-top:6px}
+.foglio.claude{background:var(--ink);color:var(--carta);border-top-color:var(--sen)}
+@keyframes in{from{opacity:0;transform:translateY(16px) scale(.9)}}
+.nuvola{display:flex;flex-wrap:wrap;gap:6px 22px;align-items:center;justify-content:center;padding:20px 0}
+.nuvola span{font-family:Marcellus,serif;line-height:1;transition:font-size .4s;animation:in .6s both}
+.carte{display:flex;flex-wrap:wrap;gap:6px 14px;font-family:Marcellus,serif;font-size:clamp(14px,1.3vw,19px);padding:8px 0 16px;border-bottom:1px dashed rgba(27,23,17,.25);margin-bottom:12px}
+.carte .s{font-family:"DM Mono",monospace;font-size:.75em;letter-spacing:.06em;text-transform:lowercase;background:var(--ink);color:var(--carta);padding:3px 6px;border-radius:4px}
+.pesca{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.coppia{display:flex;gap:8px;align-items:center;font-family:Marcellus,serif;font-size:clamp(18px,2vw,28px);background:#fff;border-radius:12px;padding:10px 14px;animation:in .5s both}
+.coppia .s{font-family:"DM Mono",monospace;font-size:.7em;text-transform:lowercase;background:var(--ink);color:var(--carta);padding:4px 8px;border-radius:5px}
+.btn{font:600 15px "Familjen Grotesk",sans-serif;background:var(--ink);color:var(--carta);border:0;border-radius:10px;padding:11px 15px;cursor:pointer;text-decoration:none;display:inline-block}
+.btn.v{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+footer{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:10px clamp(18px,4vw,48px) 14px;border-top:1px solid rgba(27,23,17,.12)}
+footer .sx{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.timer{font-family:Marcellus,serif;font-size:34px;font-variant-numeric:tabular-nums;min-width:3.4em}
+.passi{display:flex;gap:4px}
+.passi i{width:22px;height:6px;border-radius:3px;background:rgba(27,23,17,.15);cursor:pointer}
+.passi i.ora{background:var(--ink)}
+.passi i.fatto{background:rgba(27,23,17,.45)}
+#n{opacity:.6}
+@media (max-width:760px){header{grid-template-columns:1fr}.qr{display:none}body{overflow:auto}}
+</style></head><body>
+<div class="bar"></div>
+<header>
+  <div><div class="mono" id="occh"></div><h1 id="tit"></h1><p class="q" id="q"></p></div>
+  <div class="qr"><div id="qr"></div><div class="mono">Scrivete qui<br>mauragancitano.com/ied/lezione1/tu.html</div></div>
+</header>
+<main id="main"></main>
+<footer>
+  <div class="sx"><button class="btn v" id="prev" type="button">←</button><button class="btn" id="next" type="button">Avanti →</button><div class="passi" id="passi"></div><span class="mono" id="n"></span></div>
+  <div class="sx"><span class="timer" id="timer"></span><button class="btn v" id="tbtn" type="button" hidden>Avvia</button><a class="btn v" href="../tavolo.html" target="_blank">Tavolo</a><a class="btn v" href="../" target="_blank">Il corso</a></div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="passi.js"></script>
+<script>
+(function(){
+  const $=s=>document.querySelector(s);
+  const COL=['var(--sen)','var(--bod)','var(--des)','var(--wor)','var(--tog)'];
+  const R={};PASSI.forEach(p=>R[p.id]=[]);const visti=new Set();let i=0;
+  try{i=Math.max(0,Math.min(PASSI.length-1,+localStorage.getItem('l1-i')||0))}catch(e){}
+  try{new QRCode($('#qr'),{text:'https://mauragancitano.com/ied/lezione1/tu.html',width:150,height:150,colorDark:'#1B1711',colorLight:'#ffffff'})}catch(e){}
+  const pas=$('#passi');PASSI.forEach((p,k)=>{const b=document.createElement('i');b.title=p.tit;b.onclick=()=>vai(k);pas.appendChild(b)});
+  let pescati={};
+  function pesca(n,da){const a=da.slice(),o=[];while(o.length<n){o.push(a.splice(Math.floor(Math.random()*a.length),1)[0])}return o}
+  function render(){const p=PASSI[i];const m=$('#main');m.innerHTML='';
+    if(p.mazzo){const c=document.createElement('div');c.className='carte';c.innerHTML=CHIARE.map(w=>`<span>${w}</span>`).join('')+SCURE.map(w=>`<span class="s">${w}</span>`).join('');m.appendChild(c)}
+    if(p.binomio||p.oracolo){const box=document.createElement('div');box.className='pesca';const b=document.createElement('button');b.className='btn';b.type='button';b.textContent=p.binomio?'Pesca un binomio':'Pesca tre carte';
+      b.onclick=()=>{const d=document.createElement('div');d.className='coppia';if(p.binomio){const[c]=pesca(1,CHIARE),[s]=pesca(1,SCURE);d.innerHTML=`<span>${c}</span>+<span class="s">${s}</span>`}else{const t=pesca(3,CHIARE.concat(SCURE));d.innerHTML=t.map((w,k)=>`<span class="${SCURE.includes(w)?'s':''}">${w}</span>`).join(' · ')}box.appendChild(d)};box.appendChild(b);m.appendChild(box)}
+    if(p.tavolo){const a=document.createElement('a');a.className='btn';a.href='../tavolo.html';a.target='_blank';a.textContent='Apri il memory sul tavolo';a.style.marginBottom='14px';m.appendChild(a)}
+    const zona=document.createElement('div');zona.id='zona';m.appendChild(zona);disegna()}
+  function disegna(){const p=PASSI[i],z=$('#zona');if(!z)return;const rr=R[p.id];
+    if(p.tipo==='nuvola'){const cnt={};rr.forEach(r=>{if(r.claude)return;const w=r.t.trim().toLowerCase();cnt[w]=(cnt[w]||0)+1});const max=Math.max(1,...Object.values(cnt));
+      z.className='nuvola';z.innerHTML=Object.entries(cnt).sort((a,b)=>b[1]-a[1]).map(([w,n],k)=>`<span style="font-size:${18+46*n/max}px;color:${COL[k%5]}">${esc(w)}</span>`).join('')||'<span class="mono" style="opacity:.5">Aspetto le vostre parole…</span>';
+      rr.filter(r=>r.claude).forEach(r=>z.insertAdjacentHTML('beforeend',`<div class="foglio claude" style="flex-basis:100%;max-width:640px">${esc(r.t)}<small>Claude</small></div>`))}
+    else if(p.tipo==='frasi'){z.className='muro';z.innerHTML=rr.map((r,k)=>`<div class="foglio${r.claude?' claude':''}" style="--c:${COL[k%5]}">${esc(r.t)}<small>${r.claude?'Claude':esc(r.g||'')}</small></div>`).join('')||'<span class="mono" style="opacity:.5">Aspetto le vostre risposte…</span>'}
+    else{z.className='';z.innerHTML=''}
+    $('#n').textContent=rr.filter(r=>!r.claude).length?rr.filter(r=>!r.claude).length+' risposte':''}
+  function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+  function vai(k,manda1=true){i=Math.max(0,Math.min(PASSI.length-1,k));const p=PASSI[i];
+    $('#occh').textContent=`Lezione 1 · Guardare · ${p.ora} · ${i+1} di ${PASSI.length}`;$('#tit').textContent=p.tit;$('#q').textContent=p.q;
+    [...pas.children].forEach((b,k)=>{b.className=k===i?'ora':k<i?'fatto':''});
+    try{localStorage.setItem('l1-i',i)}catch(e){}
+    setTimer(p.timer||0);render();if(manda1)manda({k:'s',s:p.id}).catch(()=>{})}
+  // tempo
+  let tot=0,resta=0,tid=null;const fmt=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
+  function setTimer(m){clearInterval(tid);tid=null;tot=resta=m*60;$('#tbtn').hidden=!m;$('#tbtn').textContent='Avvia';$('#timer').textContent=m?fmt(resta):''}
+  $('#tbtn').onclick=()=>{if(tid){clearInterval(tid);tid=null;$('#tbtn').textContent='Riprendi';return}tid=setInterval(()=>{resta--;$('#timer').textContent=fmt(Math.max(0,resta));if(resta<=0){clearInterval(tid);tid=null;$('#tbtn').textContent='Fine'}},1000);$('#tbtn').textContent='Ferma'};
+  $('#prev').onclick=()=>vai(i-1);$('#next').onclick=()=>vai(i+1);
+  document.addEventListener('keydown',e=>{if(e.target.closest('input,textarea'))return;if(e.key==='ArrowRight')vai(i+1);if(e.key==='ArrowLeft')vai(i-1);if(e.key===' '&&!$('#tbtn').hidden){e.preventDefault();$('#tbtn').click()}if(e.key==='f'||e.key==='F'){try{document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}catch(x){}}});
+  ascolta((o,m)=>{if(visti.has(m.id))return;visti.add(m.id);if((o.k==='r'||o.k==='c')&&R[o.s]){R[o.s].push({t:String(o.t||''),g:String(o.g||''),claude:o.k==='c'});if(o.s===PASSI[i].id)disegna()}});
+  vai(i);
+})();
+</script></body></html>

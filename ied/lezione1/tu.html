@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Lezione 1 · scrivi qui</title><meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Familjen+Grotesk:wght@400;500;600&family=DM+Mono:wght@500&display=swap">
+<style>
+:root{--carta:#F7F1E4;--ink:#1B1711;--c:#E3A63A;color-scheme:light}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--carta);color:var(--ink);font-family:"Familjen Grotesk",system-ui,sans-serif;padding:calc(env(safe-area-inset-top,0px) + 18px) 16px 30px;min-height:100vh}
+.mono{font:500 10.5px/1.4 "DM Mono",monospace;letter-spacing:.14em;text-transform:uppercase;opacity:.65}
+h1{font-family:Marcellus,serif;font-weight:400;font-size:30px;line-height:1.1;margin:10px 0 8px}
+p.q{font-size:18px;line-height:1.4;margin-bottom:18px}
+label{display:block;font:500 11px "DM Mono",monospace;letter-spacing:.12em;text-transform:uppercase;opacity:.7;margin:14px 0 6px}
+input,textarea{width:100%;font:inherit;font-size:18px;padding:14px;border-radius:12px;border:1.5px solid rgba(27,23,17,.3);background:#fff}
+textarea{min-height:96px;resize:vertical}
+button{margin-top:14px;width:100%;font:600 18px "Familjen Grotesk",sans-serif;padding:16px;border:0;border-radius:12px;background:var(--ink);color:var(--carta);cursor:pointer}
+button:disabled{opacity:.4}
+.ok{margin-top:14px;font-size:16px;min-height:1.4em}
+.guarda{font-family:Marcellus,serif;font-size:22px;margin-top:20px}
+.bar{height:5px;background:linear-gradient(90deg,#E3A63A,#E25A3F,#C8457F,#3F72C4,#3EA377);position:fixed;top:0;left:0;right:0}
+a{color:inherit}
+</style></head><body><div class="bar"></div>
+<div class="mono">IED Roma · Design 4 · lezione 1 · <span id="ora"></span></div>
+<h1 id="tit">Un momento…</h1>
+<p class="q" id="q">Sto cercando la domanda sullo schermo.</p>
+<form id="f" hidden>
+  <label for="t">La tua risposta</label><textarea id="t" maxlength="280"></textarea>
+  <label for="g">Gruppo o nome (facoltativo)</label><input id="g" maxlength="30" autocomplete="off">
+  <button id="b" type="submit">Manda</button>
+  <div class="ok" id="ok"></div>
+</form>
+<div class="guarda" id="guarda" hidden>Guarda lo schermo.</div>
+<p class="mono" style="margin-top:30px">Le risposte compaiono sullo schermo dell'aula, senza nome se non lo scrivi. <a href="../tavolo.html">Il tavolo da gioco</a> · <a href="../">Il corso</a></p>
+<script src="passi.js"></script>
+<script>
+(function(){
+  const $=s=>document.querySelector(s);let cur=null;
+  try{$('#g').value=localStorage.getItem('l1-g')||''}catch(e){}
+  function mostra(id){const p=PASSI.find(x=>x.id===id);if(!p)return;cur=p;$('#tit').textContent=p.tit;$('#q').textContent=p.q;$('#ora').textContent=p.ora;
+    const si=p.tipo!=='nessuno';$('#f').hidden=!si;$('#guarda').hidden=si;$('#t').placeholder=p.ph||'';$('#t').value='';$('#ok').textContent='';
+    $('#t').style.minHeight=p.tipo==='nuvola'?'56px':'96px'}
+  mostra(PASSI[0].id);
+  ascolta(o=>{if(o.k==='s')mostra(o.s)});
+  $('#f').addEventListener('submit',e=>{e.preventDefault();const t=$('#t').value.trim();if(!t||!cur)return;const g=$('#g').value.trim();try{localStorage.setItem('l1-g',g)}catch(x){}
+    $('#b').disabled=true;manda({k:'r',s:cur.id,t:t.slice(0,280),g:g.slice(0,30)}).then(r=>{if(!r.ok)throw 0;$('#ok').textContent='Arrivata sullo schermo. Puoi mandarne un\'altra.';$('#t').value=''}).catch(()=>{$('#ok').textContent='Non è partita: riprova tra qualche secondo.'}).finally(()=>{setTimeout(()=>$('#b').disabled=false,1500)})});
+})();
+</script></body></html>
