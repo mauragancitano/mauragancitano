@@ -7,6 +7,7 @@ window.PASSI=[
  {id:'manca',ora:'12:15',tit:'Cosa vi manca',q:'Una cosa che non sapete ancora fare, o che vi spaventa.',tipo:'frasi',ph:'una cosa che manca'},
  {id:'attira',ora:'12:25',tit:'Il mazzo',q:'Guardate le sessanta parole sullo schermo. Scrivetene una che vi attira per il vostro brief.',tipo:'nuvola',ph:'una parola del mazzo',mazzo:true},
  {id:'respinge',ora:'12:30',tit:'Il rovescio',q:'E una che vi respinge, o vi fa paura.',tipo:'nuvola',ph:'una parola del mazzo',mazzo:true},
+ {id:'parliamo',ora:'12:35',tit:'Parliamone',q:'Telefoni giù. Avete scritto stanchi, delicato, confini, poco margine. Dieci minuti a voce.',tipo:'nessuno',timer:10,domande:['Dove sta il limite del vostro brief? Chi lo decide: il committente, la legge, voi?','Cosa vi stanca davvero: il tema, il modo di lavorare o il tempo?','Avete scelto care, play, freedom e respinto awkward e loosing control. Il vostro pubblico, davanti al vostro tema, cosa sente?']},
  {id:'binomio',ora:'12:35',tit:'Il binomio fantastico',q:'Una carta chiara e una scura. In 25 minuti inventate una cosa che le tiene insieme e disegnatela. Poi scrivete qui il suo nome e una riga.',tipo:'frasi',ph:'nome della cosa: una riga',binomio:true,timer:25},
  {id:'pausa',ora:'13:20',tit:'Pausa',q:'Trenta minuti. Ci vediamo alle 13:50.',tipo:'nessuno',timer:30},
  {id:'rovescio',ora:'13:50',tit:'Il memory del rovescio',q:'Sul tavolo da gioco: trovate le coppie e dite perché sono la stessa cosa vista da due lati.',tipo:'frasi',ph:'una coppia e perché',tavolo:true},

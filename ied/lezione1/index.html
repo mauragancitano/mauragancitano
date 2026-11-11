@@ -74,6 +74,11 @@ h1{font-size:clamp(30px,4vw,60px)}
 .carte{gap:8px 22px;font-size:clamp(22px,2.3vw,38px);line-height:1.25;padding:6px 0 18px}
 .carte span{white-space:nowrap}
 .carte .s{font-size:.72em;padding:4px 9px;border-radius:6px}
+
+.domande{list-style:none;counter-reset:d;display:flex;flex-direction:column;gap:22px;padding:10px 0;max-width:30em}
+.domande li{counter-increment:d;font-family:Marcellus,serif;font-size:clamp(26px,3vw,46px);line-height:1.15;display:grid;grid-template-columns:1.2em 1fr;gap:14px;animation:in .7s both}
+.domande li:nth-child(2){animation-delay:.25s}.domande li:nth-child(3){animation-delay:.5s}
+.domande li::before{content:counter(d);color:var(--bod)}
 </style></head><body>
 <div class="bar"></div>
 <header>
@@ -105,6 +110,7 @@ h1{font-size:clamp(30px,4vw,60px)}
     if(p.binomio||p.oracolo){const box=document.createElement('div');box.className='pesca';const b=document.createElement('button');b.className='btn';b.type='button';b.textContent=p.binomio?'Pesca un binomio':'Pesca tre carte';
       b.onclick=()=>{const d=document.createElement('div');d.className='coppia';if(p.binomio){const[c]=pesca(1,CHIARE),[s]=pesca(1,SCURE);d.innerHTML=`<span>${c}</span>+<span class="s">${s}</span>`}else{const t=pesca(3,CHIARE.concat(SCURE));d.innerHTML=t.map((w,k)=>`<span class="${SCURE.includes(w)?'s':''}">${w}</span>`).join(' · ')}box.appendChild(d)};box.appendChild(b);m.appendChild(box)}
     if(p.tavolo){const a=document.createElement('a');a.className='btn';a.href='../tavolo.html';a.target='_blank';a.textContent='Apri il memory sul tavolo';a.style.marginBottom='14px';m.appendChild(a)}
+    if(p.domande){const d=document.createElement('ol');d.className='domande';d.innerHTML=p.domande.map(x=>`<li>${x}</li>`).join('');m.appendChild(d)}
     const zona=document.createElement('div');zona.id='zona';m.appendChild(zona);disegna()}
   function disegna(){const p=PASSI[i],z=$('#zona');if(!z)return;const rr=R[p.id];
     if(p.tipo==='nuvola'){const cnt={};rr.forEach(r=>{if(r.claude)return;const w=r.t.trim().toLowerCase();cnt[w]=(cnt[w]||0)+1});const max=Math.max(1,...Object.values(cnt));
