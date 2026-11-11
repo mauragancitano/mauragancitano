@@ -46,6 +46,21 @@ footer .sx{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .passi i.fatto{background:rgba(27,23,17,.45)}
 #n{opacity:.6}
 @media (max-width:760px){header{grid-template-columns:1fr}.qr{display:none}body{overflow:auto}}
+
+/* layout v2: a sinistra domanda e parole subito sotto, a destra il QR grande */
+body{grid-template-columns:1fr minmax(300px,30vw);grid-template-rows:auto auto 1fr auto}
+.bar{grid-column:1/3}
+header{grid-column:1;grid-row:2;grid-template-columns:1fr;padding-bottom:4px}
+header .qr{position:fixed;right:clamp(18px,2.5vw,36px);top:50%;transform:translateY(-55%);width:min(28vw,46vh);padding:16px}
+header .qr #qr,header .qr #qr img,header .qr #qr canvas{width:100%!important;height:auto!important;aspect-ratio:1}
+header .qr .mono{font-size:13px}
+main{grid-column:1;grid-row:3;padding-top:0}
+footer{grid-column:1/3;grid-row:4}
+h1{font-size:clamp(30px,4vw,60px)}
+.q{font-size:clamp(18px,1.9vw,26px);margin-top:8px}
+.nuvola{justify-content:flex-start;gap:10px 30px;padding:14px 0}
+.foglio{font-size:clamp(18px,1.8vw,26px);max-width:520px}
+@media (max-width:760px){body{grid-template-columns:1fr}header .qr{display:none}}
 </style></head><body>
 <div class="bar"></div>
 <header>
@@ -80,7 +95,7 @@ footer .sx{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
     const zona=document.createElement('div');zona.id='zona';m.appendChild(zona);disegna()}
   function disegna(){const p=PASSI[i],z=$('#zona');if(!z)return;const rr=R[p.id];
     if(p.tipo==='nuvola'){const cnt={};rr.forEach(r=>{if(r.claude)return;const w=r.t.trim().toLowerCase();cnt[w]=(cnt[w]||0)+1});const max=Math.max(1,...Object.values(cnt));
-      z.className='nuvola';z.innerHTML=Object.entries(cnt).sort((a,b)=>b[1]-a[1]).map(([w,n],k)=>`<span style="font-size:${18+46*n/max}px;color:${COL[k%5]}">${esc(w)}</span>`).join('')||'<span class="mono" style="opacity:.5">Aspetto le vostre parole…</span>';
+      z.className='nuvola';z.innerHTML=Object.entries(cnt).sort((a,b)=>b[1]-a[1]).map(([w,n],k)=>`<span style="font-size:${30+70*n/max}px;color:${COL[k%5]}">${esc(w)}</span>`).join('')||'<span class="mono" style="opacity:.5">Aspetto le vostre parole…</span>';
       rr.filter(r=>r.claude).forEach(r=>z.insertAdjacentHTML('beforeend',`<div class="foglio claude" style="flex-basis:100%;max-width:640px">${esc(r.t)}<small>Claude</small></div>`))}
     else if(p.tipo==='frasi'){z.className='muro';z.innerHTML=rr.map((r,k)=>`<div class="foglio${r.claude?' claude':''}" style="--c:${COL[k%5]}">${esc(r.t)}<small>${r.claude?'Claude':esc(r.g||'')}</small></div>`).join('')||'<span class="mono" style="opacity:.5">Aspetto le vostre risposte…</span>'}
     else{z.className='';z.innerHTML=''}
